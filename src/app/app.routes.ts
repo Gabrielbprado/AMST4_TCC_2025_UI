@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
@@ -11,12 +10,17 @@ import { SellerDashboardComponent } from './customer/seller/seller-dashboard/sel
 import { BuyerDashboardComponent } from './customer/buyer/buyer-dashboard/buyer-dashboard.component';
 import { CheckoutComponent } from './customer/buyer/checkout/checkout.component';
 import { PageNotFoundComponent } from './shared/layouts/page-not-found/page-not-found.component';
+import { ProfileComponent } from './customer/profile/profile.component';
+import { RegistrationComponent } from './customer/registration/registration.component';
+import { LoginComponent } from './customer/login/login.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'my-profile', component: UserProfileComponent },
   { path: 'contact-us', component: ContactUsComponent },
+  { path: 'user-profile', component: ProfileComponent },
+  { path: 'user-register', component: RegistrationComponent },
+  { path: 'user-login', component: LoginComponent },
   //admin
   {
     path: '',

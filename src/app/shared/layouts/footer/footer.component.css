@@ -1,0 +1,99 @@
+.footer {
+    height: 35vh;
+    padding: 20px 0;
+    /* Ajuste do padding para evitar que o conteúdo ultrapasse a altura */
+    background-color: #f8f9fa;
+    color: #343a40;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    /* Alinha o conteúdo verticalmente */
+}
+
+.footer .container {
+    flex-grow: 1;
+    /* Permite que o container ocupe a altura disponível */
+}
+
+.center1 {
+    margin-left: 10%;
+}
+
+
+.footer-logo {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.footer-logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer p {
+    margin-bottom: 10px;
+}
+
+.footer-link {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-link:hover {
+    color: #0056b3;
+}
+
+.social-icons {
+    margin-top: 10px;
+}
+
+.social-icon {
+    color: #343a40;
+    margin-right: 15px;
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+.social-icon:hover {
+    color: #007bff;
+}
+
+.text-center {
+    font-size: 14px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.pa {
+    font-size: 14px;
+    max-width: 80%;
+    margin-top: 10px;
+    margin-bottom: 0 !important;
+}
+
+.sobre-mim {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 0 !important;
+}
+
+.links {
+    margin-top: 30px;
+}
+
+.cont {
+    margin-top: 25px;
+}
+
+.copy {
+    top: -15px;
+}
