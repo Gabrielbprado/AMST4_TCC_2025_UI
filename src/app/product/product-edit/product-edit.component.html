@@ -1,0 +1,60 @@
+<div class="order-registration-container">
+    <h2>Editar Produto</h2>
+    <form class="order-form">
+        <label for="product-name">Nome do Produto</label>
+        <input
+            type="text"
+            id="product-name"
+            name="product-name"
+            placeholder="Digite o nome do produto"
+            required
+        >
+        <label for="description">Descrição</label>
+        <div class="description-field">
+            <textarea id="description" placeholder="Digite a descrição do produto"></textarea>
+        </div>
+        <label for="price">Preço</label>
+        <input
+            type="number"
+            id="price"
+            name="price"
+            placeholder="R$"
+            required
+        >
+        <label for="stock">Estoque</label>
+        <input
+            type="number"
+            id="stock"
+            name="stock"
+            placeholder="Quantidade em estoque"
+            required
+        >
+        <label for="category">Categoria</label>
+        <select id="category" name="category" required>
+            <option value="" disabled selected>Selecione uma categoria</option>
+            <option value="electronics">Eletrônicos</option>
+            <option value="clothing">Roupas</option>
+            <option value="home">Casa</option>
+            <option value="books">Livros</option>
+            <option value="other">Outros</option>
+        </select>
+        <label for="seller">Vendedor</label>
+        <input
+            type="text"
+            id="seller"
+            name="seller"
+            placeholder="Nome do vendedor"
+            required
+        >
+        <label for="images">Imagens do Produto (até 3)</label>
+        <input
+            type="file"
+            id="images"
+            name="images"
+            accept="image/*"
+            multiple
+        >
+        <p class="image-info">Máximo de 3 imagens.</p>
+        <button type="submit" class="submit-btn">Salvar Alterações</button>
+    </form>
+</div>
