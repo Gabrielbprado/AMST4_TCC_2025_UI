@@ -13,6 +13,8 @@ import { PageNotFoundComponent } from './shared/layouts/page-not-found/page-not-
 import { ProfileComponent } from './customer/profile/profile.component';
 import { RegistrationComponent } from './customer/registration/registration.component';
 import { LoginComponent } from './customer/login/login.component';
+import { FinalizeorderComponent } from './product/finalizeorder/finalizeorder.component';
+import { OrderCompletedComponent } from './product/order-completed/order-completed.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -21,6 +23,8 @@ export const routes: Routes = [
   { path: 'user-profile', component: ProfileComponent },
   { path: 'user-register', component: RegistrationComponent },
   { path: 'user-login', component: LoginComponent },
+  { path: 'finalize-order', component: FinalizeorderComponent },
+  { path: 'order-completed', component: OrderCompletedComponent },
   //admin
   {
     path: '',

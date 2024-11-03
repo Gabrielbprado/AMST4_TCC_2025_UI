@@ -4,12 +4,13 @@
 }
 
 .tela-de-perfil {
-    width: 100%;
-    max-width: 800px;
-    margin: auto;
-    top: 20px;
-    padding: 20px;
-
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 40px auto;
     text-align: center;
     color: #000;
 }
