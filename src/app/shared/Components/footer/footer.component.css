@@ -1,5 +1,5 @@
 .footer {
-    height: 35vh;
+    height: 45vh;
     padding: 20px 0;
     /* Ajuste do padding para evitar que o conteúdo ultrapasse a altura */
     background-color: #f8f9fa;
@@ -96,4 +96,5 @@ a {
 
 .copy {
     top: -15px;
+    margin-left: 40px;
 }
