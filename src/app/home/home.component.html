@@ -1,16 +1,3 @@
-<section class="py-5 text-center container">
-  <div class="row py-lg-5">
-    <div class="col-lg-6 col-md-8 mx-auto">
-      <h1 class="fw-light">E-Commerce AMS Store</h1>
-      <p class="lead text-body-secondary">
-        Somos uma loja online dedicada a oferecer os melhores produtos com a melhor experiência de compra. Nossa missão é proporcionar qualidade e satisfação aos nossos clientes.
-      </p>
-      <p>
-        <a class="btn btn-primary my-2" routerLink="/seller/product"
-          >Seção de Produtos</a
-        >&nbsp; &nbsp;
-        <a class="btn btn-secondary my-2" routerLink="/user-register">Register</a>
-      </p>
-    </div>
-  </div>
-</section>
+<div *ngFor="let products of listProducts">
+  <app-products [product]="products"></app-products>
+</div>

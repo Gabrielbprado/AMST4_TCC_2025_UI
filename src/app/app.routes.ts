@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ProductComponent } from './product/product.component';
-import { SigninSignupComponent } from './customer/signin-signup/signin-signup.component';
 import { PageNotFoundComponent } from './shared/Components/page-not-found/page-not-found.component';
 import { ProfileComponent } from './customer/profile/profile.component';
 import { RegistrationComponent } from './customer/registration/registration.component';
@@ -33,13 +32,6 @@ export const routes: Routes = [
     path: '',
     children: [
       { path: 'admin//product', component: ProductComponent },
-    ],
-  },
-  {
-    path: '',
-    children: [
-      { path: 'sign-in', component: SigninSignupComponent },
-      { path: 'sign-up', component: SigninSignupComponent },
     ],
   },
   {
