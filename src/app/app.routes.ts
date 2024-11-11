@@ -13,6 +13,7 @@ import { PageNotFoundComponent } from './shared/Components/page-not-found/page-n
 import { ProductDetailsComponent } from './core/pages/product/product-details/product-details.component';
 import { PixPaymentComponent } from './shared/Components/pix-payment/pix-payment.component';
 
+
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -24,8 +25,8 @@ export const routes: Routes = [
   { path: 'product-registration', component: ProductRegistrationComponent },
   { path: 'product-edit', component: ProductEditComponent },
   { path: 'product-delete', component: DeleteProductComponent },
-  { path: 'product-details', component: ProductDetailsComponent },
   { path: 'pix-payment/:id', component: PixPaymentComponent },
+  { path: 'product-details', component: ProductDetailsComponent},
   {
     path: '',
     children: [{ path: 'user-login', component: LoginComponent }],
