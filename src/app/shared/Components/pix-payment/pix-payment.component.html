@@ -1,0 +1,15 @@
+<!-- pix-payment.component.html -->
+<div class="pix-payment-container">
+    <h1 class="product-title">{{ pixInfo.description }}</h1>
+    
+    <div class="qr-code-container">
+      <img src="data:image/png;base64,{{pixInfo.qrCodeBase64}}" alt="QR Code" class="qr-code-image"/>
+    </div>
+    
+    <div class="key-container">
+      <label for="pix-key">Chave PIX</label>
+      <input id="pix-key" [value]="pixInfo.qrCode" readonly class="pix-key-input"/>
+      <button (click)="copyPixKey()" class="copy-btn">Copiar Chave</button>
+    </div>
+  </div>
+  

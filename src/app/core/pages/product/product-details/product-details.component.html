@@ -1,0 +1,30 @@
+<div class="container py-5">
+    <div class="row">
+      <!-- Imagem do Produto -->
+      <div class="col-md-6">
+        <img [src]="product.imageUrl" class="img-fluid" alt="{{product.name}}" />
+      </div>
+  
+      <!-- Detalhes do Produto -->
+      <div class="col-md-6">
+        <h2>{{ product.name }}</h2>
+        <p class="text-muted">{{ product.description }}</p>
+  
+        <div class="d-flex align-items-center">
+          <h4 class="mr-2">R$ {{ product.price }}</h4>
+          <span class="badge bg-success">{{ product.stockQuantity }} em estoque</span>
+        </div>
+  
+        <div class="my-3">
+          <button class="btn btn-primary btn-lg mr-3" (click)="buyNow()">Comprar Agora</button>
+          <button class="btn btn-outline-secondary btn-lg" (click)="addToCart()">Adicionar ao Carrinho</button>
+        </div>
+  
+        <div class="my-4">
+          <h5>Categoria:</h5>
+          <span class="badge bg-info">Categoria {{ product.categoryId }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,79 @@
+/* Estilo básico para o cartão de produto */
+.product-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+/* Efeito de hover */
+.product-card:hover {
+    transform: translateY(-5px);  /* Eleva o cartão */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);  /* Aumenta o efeito de sombra */
+}
+
+/* Estilo da imagem do produto */
+.product-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Efeito ao passar o mouse sobre a imagem */
+.product-card:hover .product-image {
+    transform: scale(1.05);  /* Aumenta um pouco a imagem */
+}
+
+/* Informações do produto */
+.product-info {
+    padding: 15px;
+    text-align: center;
+}
+
+/* Título do produto */
+.product-title {
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* Preço do produto */
+.product-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #00a000; /* Cor verde para destaque no preço */
+    margin-top: 5px;
+    transition: color 0.3s ease;
+}
+
+/* Efeito ao passar o mouse no preço */
+.product-card:hover .product-price {
+    color: #ff7b00;  /* Alteração para uma cor laranja ao passar o mouse */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .product-card {
+        margin-bottom: 20px;
+    }
+
+    .product-info {
+        padding: 10px;
+    }
+
+    .product-title {
+        font-size: 14px;
+    }
+
+    .product-price {
+        font-size: 16px;
+    }
+}

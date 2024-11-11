@@ -1,21 +1,21 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
-import { ProductComponent } from './product/product.component';
+import { HomeComponent } from './core/pages/home/home.component';
+import { ProfileComponent } from './core/pages/customer/profile/profile.component';
+import { RegistrationComponent } from './core/pages/customer/registration/registration.component';
+import { LoginComponent } from './core/pages/customer/login/login.component';
+import { FinalizeorderComponent } from './core/pages/product/finalizeorder/finalizeorder.component';
+import { OrderCompletedComponent } from './core/pages/product/order-completed/order-completed.component';
+import { ProductRegistrationComponent } from './core/pages/product/product-registration/product-registration.component';
+import { ProductEditComponent } from './core/pages/product/product-edit/product-edit.component';
+import { DeleteProductComponent } from './core/pages/product/delete-product/delete-product.component';
+import { ProductComponent } from './core/pages/product/product.component';
 import { PageNotFoundComponent } from './shared/Components/page-not-found/page-not-found.component';
-import { ProfileComponent } from './customer/profile/profile.component';
-import { RegistrationComponent } from './customer/registration/registration.component';
-import { LoginComponent } from './customer/login/login.component';
-import { FinalizeorderComponent } from './product/finalizeorder/finalizeorder.component';
-import { OrderCompletedComponent } from './product/order-completed/order-completed.component';
-import { ProductRegistrationComponent } from './product/product-registration/product-registration.component';
-import { ProductEditComponent } from './product/product-edit/product-edit.component';
-import { DeleteProductComponent } from './product/delete-product/delete-product.component';
+import { ProductDetailsComponent } from './core/pages/product/product-details/product-details.component';
+import { PixPaymentComponent } from './shared/Components/pix-payment/pix-payment.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'contact-us', component: ContactUsComponent },
   { path: 'user-profile', component: ProfileComponent },
   { path: 'user-register', component: RegistrationComponent },
   { path: 'user-login', component: LoginComponent },
@@ -24,6 +24,8 @@ export const routes: Routes = [
   { path: 'product-registration', component: ProductRegistrationComponent },
   { path: 'product-edit', component: ProductEditComponent },
   { path: 'product-delete', component: DeleteProductComponent },
+  { path: 'product-details', component: ProductDetailsComponent },
+  { path: 'pix-payment/:id', component: PixPaymentComponent },
   {
     path: '',
     children: [{ path: 'user-login', component: LoginComponent }],
