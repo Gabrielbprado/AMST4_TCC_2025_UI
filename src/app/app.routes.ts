@@ -11,6 +11,7 @@ import { OrderCompletedComponent } from './product/order-completed/order-complet
 import { ProductRegistrationComponent } from './product/product-registration/product-registration.component';
 import { ProductEditComponent } from './product/product-edit/product-edit.component';
 import { DeleteProductComponent } from './product/delete-product/delete-product.component';
+import { ProductDetailsComponent } from './product/product-details/product-details.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -24,6 +25,7 @@ export const routes: Routes = [
   { path: 'product-registration', component: ProductRegistrationComponent },
   { path: 'product-edit', component: ProductEditComponent },
   { path: 'product-delete', component: DeleteProductComponent },
+  { path: 'product-details', component: ProductDetailsComponent},
   {
     path: '',
     children: [{ path: 'user-login', component: LoginComponent }],
