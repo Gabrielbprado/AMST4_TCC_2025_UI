@@ -27,35 +27,65 @@
         <div class="payment-method">
             <h3>Método de Pagamento</h3>
             <ul>
-                <li>
-                    <input
-                        type="radio"
-                        id="credit-card"
-                        name="payment-method"
-                        value="credit-card"
-                    >
-                    <label for="credit-card">Cartão de Crédito</label>
-                </li>
-                <li>
-                    <input
-                        type="radio"
-                        id="pix"
-                        name="payment-method"
-                        value="pix"
-                    >
-                    <label for="pix">Pix</label>
-                </li>
-                <li>
-                    <input
-                        type="radio"
-                        id="fetlock"
-                        name="payment-method"
-                        value="fetlock"
-                    >
-                    <label for="fetlock">Boleto</label>
-                </li>
+              <li>
+                <input
+                  type="radio"
+                  id="credit-card"
+                  name="paymentMethod"
+                  (change)="selectPaymentMethod('credit-card')"
+                />
+                <label for="credit-card">Cartão de Crédito</label>
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  id="pix"
+                  name="paymentMethod"
+                  (change)="selectPaymentMethod('pix')"
+                />
+                <label for="pix">Pix</label>
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  id="boleto"
+                  name="paymentMethod"
+                  (change)="selectPaymentMethod('boleto')"
+                />
+                <label for="boleto">Boleto</label>
+              </li>
             </ul>
-        </div>
+          </div>
+          
+            <div [ngClass]="{ 'additional-info': true, 'active': selectedPaymentMethod === 'credit-card' }">
+                <label for="card-number">Número do Cartão:</label>
+                <input type="text" id="card-number" />
+                <label for="card-number">Nome do Cartão:</label>
+                <input type="text" id="card-number" />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="text-center">
+                            <label for="card-expiry text-center">Validade:</label>
+                        </div>
+                        
+                        <input type="text" id="card-expiry" />
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-center">
+                            <label for="card-cvc">CVC:</label>
+                        </div>
+                        <input type="text" id="card-cvc" />
+                    </div>
+                </div>
+                
+                
+            </div>
+            <div [ngClass]="{ 'additional-info': true, 'active': selectedPaymentMethod === 'pix' || selectedPaymentMethod === 'boleto' }">
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" />
+            </div>
+  
+          
         <button class="btn">Finalizar Pedido</button>
     </div>
     <div class="product-image">

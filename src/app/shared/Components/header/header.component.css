@@ -103,3 +103,17 @@
         width: 100%;
     }
 }
+.badge {
+    font-size: 12px;
+    padding: 5px 8px;
+    position: absolute;
+    top: -5px; /* Ajuste a posição vertical */
+    right: -10px; /* Ajuste a posição horizontal */
+    border-radius: 50%;
+    background-color: #e74c3c; /* Cor de fundo da badge */
+    color: #ffffff; /* Cor do texto da badge */
+}
+
+.nav-item {
+    position: relative; /* Necessário para a badge se posicionar corretamente */
+}
