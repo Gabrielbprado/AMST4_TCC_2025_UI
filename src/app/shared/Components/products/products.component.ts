@@ -16,7 +16,8 @@ constructor(private service: ProductService) { }
 @Input() product: product = {
   name: 'Andrey',
   price: 1,
-  imageUrl: 'imagem.com'
+  imageUrl: 'imagem.com',
+  id: 0
 };
 
 }

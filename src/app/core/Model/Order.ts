@@ -1,4 +1,4 @@
-export interface RequestCreateOrder
+export interface Order
 {
     productId: number;
   status: string;

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CreatePixResponse } from '../Model/CreatePixResponse';
 import { Observable } from 'rxjs';
-import { RequestCreateOrder } from './../Model/RequestCreateOrder';
+import { Order } from '../Model/Order';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class OrderService {
   private URL = 'http://localhost:5282/Order';
 
      
-  DoOrder(news: RequestCreateOrder): Observable<CreatePixResponse> {
+  DoOrder(news: Order): Observable<CreatePixResponse> {
     console.log('Fazendo pedido:', news);
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiJlNTZhNmVlMC1jZDAxLTQ2YmMtYTYwMi1hMGJmMWVmZTM2ZjYiLCJuYmYiOjE3MzEzNjA0MjYsImV4cCI6MTczMTQyMDQyNiwiaWF0IjoxNzMxMzYwNDI2fQ.oY80V3GuT-EvG0L3AiR-dK5JFrWz2e7ilasE6b4utSM'
 

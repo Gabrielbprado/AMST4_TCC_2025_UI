@@ -8,7 +8,7 @@
             <ul>
                 <li>
                     <span>Nome do Produto:</span>
-                    <span class="value">Produto X</span>
+                    <span class="value">{{product.name}}</span>
                 </li>
                 <li>
                     <span>Quantidade:</span>
@@ -16,7 +16,7 @@
                 </li>
                 <li>
                     <span>Preço Unitário:</span>
-                    <span class="value">R$ 100,00</span>
+                    <span class="value">{{product.price}}</span>
                 </li>
                 <li>
                     <span>Frete:</span>
@@ -24,7 +24,7 @@
                 </li>
                 <li>
                     <span>Total:</span>
-                    <span class="value">R$ 200,00</span>
+                    <span class="value">{{product.price}}</span>
                 </li>
             </ul>
         </div>
@@ -90,9 +90,9 @@
             </div>
   
           
-        <button class="btn">Finalizar Pedido</button>
+        <button class="btn" (click)="buyNow()">Finalizar Pedido</button>
     </div>
     <div class="product-image">
-        <img src="assets/Images/yas.jpeg" alt="Produto" width="400px" height="400px">
+        <img [src]="product.imageUrl" alt="Produto" width="400px" height="400px">
     </div>
 </div>

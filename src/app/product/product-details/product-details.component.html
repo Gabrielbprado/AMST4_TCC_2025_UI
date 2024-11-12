@@ -1,42 +1,42 @@
-
-    <div class="product-details-container">
-        <div class="product-images">
-            <img src="assets/Images/yas.jpeg" alt="Produto Principal" class="main-image">
-            <div class="thumbnail-images">
-                <img src="https://via.placeholder.com/100" alt="Imagem Miniatura 1">
-                <img src="https://via.placeholder.com/100" alt="Imagem Miniatura 2">
-                <img src="https://via.placeholder.com/100" alt="Imagem Miniatura 3">
-            </div>
-        </div>
-
-        <div class="product-info">
-            <h2>MacBook Air M1 2020 13.3"</h2>
-            <p class="brand">Loja Oficial Apple</p>
-            
-
-            <div class="price">
-                <span class="original-price">R$ 12.999</span>
-                <span class="discounted-price">R$ 6.300,40</span>
-                <span class="discount">51% OFF</span>
-            </div>
-
-            <div class="installments">
-                ou 10x de R$ 663,20 sem juros
-            </div>
-
-            <div class="color-options">
-                <label for="color">Cor:</label>
-                <select id="color">
-                    <option>Cinza Espacial</option>
-                </select>
-            </div>
-
-            <button class="btn btn-buy">Comprar agora</button>
-            <button class="btn btn-cart">Adicionar ao carrinho</button>
-
-            <div class="shipping-info">
-                <p>Chegará grátis amanhã para sua primeira compra</p>
-                <p>Estoque disponível • Enviado pelo <span class="badge">FULL</span></p>
-            </div>
+<div class="product-details-container">
+    <div class="product-images">
+        <!-- Exibe a imagem principal do produto -->
+        <img [src]="product.imageUrl" alt="Produto Principal" class="main-image">
+        <div class="thumbnail-images">
+            <img src="https://via.placeholder.com/100" alt="Imagem Miniatura 1">
+            <img src="https://via.placeholder.com/100" alt="Imagem Miniatura 2">
+            <img src="https://via.placeholder.com/100" alt="Imagem Miniatura 3">
         </div>
     </div>
+
+    <div class="product-info">
+        <h2>{{ product.name }}</h2>
+        <p class="brand">Loja Oficial Apple</p>
+        <p>{{ product.description }}</p>
+
+        <div class="price">
+            <span class="original-price">R$ 12.999</span>
+            <span class="discounted-price">R$ {{ product.price }}</span>
+            <span class="discount">51% OFF</span>
+        </div>
+
+        <div class="installments">
+            ou 10x de R$ {{ (product.price / 10)}} sem juros
+        </div>
+
+        <div class="color-options">
+            <label for="color">Cor:</label>
+            <select id="color">
+                <option>Cinza Espacial</option>
+            </select>
+        </div>
+
+        <button class="btn btn-buy" (click)="buyNow()">Comprar agora</button>
+        <button class="btn btn-cart" (click)="addToCart()">Adicionar ao carrinho</button>
+
+        <div class="shipping-info">
+            <p>Chegará grátis amanhã para sua primeira compra</p>
+            <p>Estoque disponível • Enviado pelo <span class="badge">FULL</span></p>
+        </div>
+    </div>
+</div>
