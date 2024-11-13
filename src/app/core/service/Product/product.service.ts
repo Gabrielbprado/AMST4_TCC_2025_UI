@@ -12,7 +12,7 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  private url = 'http://localhost:5282';
+  private url = 'https://localhost:7089';
 
    
   GetAll() :Observable<product[]>

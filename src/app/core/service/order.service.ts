@@ -12,12 +12,12 @@ export class OrderService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private URL = 'http://localhost:5282/Order';
+  private URL = 'https://localhost:7089/Order';
 
      
   DoOrder(news: Order): Observable<CreatePixResponse> {
     console.log('Fazendo pedido:', news);
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiJlNTZhNmVlMC1jZDAxLTQ2YmMtYTYwMi1hMGJmMWVmZTM2ZjYiLCJuYmYiOjE3MzEzNjA0MjYsImV4cCI6MTczMTQyMDQyNiwiaWF0IjoxNzMxMzYwNDI2fQ.oY80V3GuT-EvG0L3AiR-dK5JFrWz2e7ilasE6b4utSM'
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIyY2ZmYWQwNy04MDBiLTQxMzUtOTA0NC1iMzBlYzFkMDI3MDMiLCJuYmYiOjE3MzE1Mjk1ODQsImV4cCI6MTczMTU4OTU4NCwiaWF0IjoxNzMxNTI5NTg0fQ.f5Z8LFgLYDxBKMSG0dIrcx386c5oeY6PAdWiNLqM0ZQ'
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
@@ -29,7 +29,7 @@ export class OrderService {
   GetPaymentInfo(id: number) 
   {
     const url = `${this.URL}/${id}`;
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiJlNTZhNmVlMC1jZDAxLTQ2YmMtYTYwMi1hMGJmMWVmZTM2ZjYiLCJuYmYiOjE3MzEzNTc3NTksImV4cCI6MTczMTQxNzc1OSwiaWF0IjoxNzMxMzU3NzU5fQ.x5l9gELFD2AdV9xJruvYA92saj1CW_8bg7Aq2d5-6_c'
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiIyY2ZmYWQwNy04MDBiLTQxMzUtOTA0NC1iMzBlYzFkMDI3MDMiLCJuYmYiOjE3MzE1Mjk1ODQsImV4cCI6MTczMTU4OTU4NCwiaWF0IjoxNzMxNTI5NTg0fQ.f5Z8LFgLYDxBKMSG0dIrcx386c5oeY6PAdWiNLqM0ZQ'
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`

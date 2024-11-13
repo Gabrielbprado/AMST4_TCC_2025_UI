@@ -28,6 +28,7 @@ export class PixPaymentComponent {
 
   constructor(private route: ActivatedRoute,private service: OrderService) {}
   ngOnInit(): void {
+    console.log('Pix Payment Component');
     const idParam = this.route.snapshot.paramMap.get('id');
     console.log('ID do produto:', idParam);
     if (idParam) {
