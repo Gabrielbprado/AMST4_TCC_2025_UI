@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { CreatePixResponse } from '../../../core/Model/CreatePixResponse';
+import { CreatePixResponse } from '../../../Model/CreatePixResponse';
 import { ActivatedRoute, Router } from '@angular/router';
-import { OrderService } from '../../../core/service/order.service';
+import { OrderService } from '../../../service/order.service';
 
 @Component({
   selector: 'app-pix-payment',

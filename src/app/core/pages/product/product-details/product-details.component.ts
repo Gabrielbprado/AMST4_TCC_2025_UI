@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { CreatePixResponse } from '../../core/Model/CreatePixResponse';
-import { OrderService } from '../../core/service/order.service';
+import { CreatePixResponse } from '../../../Model/CreatePixResponse';
+import { OrderService } from '../../../service/order.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductService } from '../../core/service/Product/product.service';
-import { Order } from '../../core/Model/Order';
-import { Product } from '../../core/Model/Product';
+import { ProductService } from '../../../service/Product/product.service';
+import { Order } from '../../../Model/Order';
+import { Product } from '../../..//Model/Product';
 
 @Component({
   selector: 'app-product-details',

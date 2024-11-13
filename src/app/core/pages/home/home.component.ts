@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProductComponent } from "../product/product.component";
-import { ProductCardComponent } from '../../../shared/Components/product-card/product-card.component';
-import { ProductsComponent } from '../../../shared/Components/products/products.component';
+import { ProductCardComponent } from '../../../core/pages/product/product-card/product-card.component';
+import { ProductsComponent } from '../../../core/pages/product/products/products.component';
 import { ProductService } from '../../service/Product/product.service';
 import { product } from '../../Model/ShortProduct';
 
