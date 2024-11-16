@@ -13,6 +13,7 @@ import { PageNotFoundComponent } from './shared/Components/page-not-found/page-n
 import { PixPaymentComponent } from './core/pages/product/pix-payment/pix-payment.component';
 import { ProductDetailsComponent} from './core/pages/product/product-details/product-details.component';
 import { CartDetailsComponent } from './core/pages/product/cart-details/cart-details.component';
+import { RegisterAddressComponent } from './core/pages/register-address/register-address.component';
 
 
 export const routes: Routes = [
@@ -29,10 +30,7 @@ export const routes: Routes = [
   { path: 'pix-payment/:id', component: PixPaymentComponent },
   { path: 'product-details/:id', component: ProductDetailsComponent},
   { path: 'cart-details', component: CartDetailsComponent},
-  {
-    path: '',
-    children: [{ path: 'user-login', component: LoginComponent }],
-  },
+  { path: 'user-register-address', component: RegisterAddressComponent },
   {
     path: '',
     children: [

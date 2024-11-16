@@ -1,75 +1,89 @@
-
 .user-profile {
     font-family: Arial, sans-serif;
     background-color: #fff;
     padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: 20px auto;
-}
-
-/* Títulos e textos */
-.user-profile h1 {
-    font-size: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 40px auto;
+    text-align: center;
+  }
+  
+  .user-profile h1 {
+    font-size: 28px;
     font-weight: bold;
     color: #333;
-    text-align: center;
-}
-
-.user-profile p {
+    margin-bottom: 10px;
+  }
+  
+  .user-profile p {
     font-size: 1rem;
-    color: #666;
-    text-align: center;
-    margin-bottom: 0.5rem;
-}
-
-/* Campos de formulário */
-.user-profile input[type="text"],
-.user-profile input[type="email"],
-.user-profile input[type="password"] {
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  .input-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 5px;
+  }
+  
+  .user-profile input[type="email"],
+  .user-profile input[type="password"] {
     width: 100%;
-    padding: 0.8rem;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 1rem;
+    border-radius: 5px;
     font-size: 1rem;
-}
-
-/* Botão */
-.user-profile button {
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  
+  .user-profile input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+  }
+  
+  .user-profile button {
     background-color: #007bff;
-    /* azul do header/footer */
     color: #fff;
-    padding: 0.8rem 1.5rem;
+    padding: 12px 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
-
-.user-profile button:hover {
+  }
+  
+  .user-profile button:hover {
     background-color: #0056b3;
-    /* tom mais escuro no hover */
-}
-
-/* Links de navegação */
-.user-profile a {
+  }
+  
+  .links-container {
+    margin-top: 20px;
+  }
+  
+  .links-container a {
     color: #007bff;
     text-decoration: none;
     font-weight: 500;
-}
-
-.user-profile a:hover {
+    margin: 0 10px;
+  }
+  
+  .links-container a:hover {
     text-decoration: underline;
-}
-
-.justify-align-center {
+  }
+  
+  .justify-align-center {
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
-}
+  }
+  
