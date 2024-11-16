@@ -14,6 +14,7 @@ import { PixPaymentComponent } from './core/pages/product/pix-payment/pix-paymen
 import { ProductDetailsComponent} from './core/pages/product/product-details/product-details.component';
 import { CartDetailsComponent } from './core/pages/product/cart-details/cart-details.component';
 import { RegisterAddressComponent } from './core/pages/register-address/register-address.component';
+import { PaymentCardFormComponent } from './core/pages/payment-card-form/payment-card-form.component';
 
 
 export const routes: Routes = [
@@ -31,6 +32,7 @@ export const routes: Routes = [
   { path: 'product-details/:id', component: ProductDetailsComponent},
   { path: 'cart-details', component: CartDetailsComponent},
   { path: 'user-register-address', component: RegisterAddressComponent },
+  { path: 'payment-card-form', component: PaymentCardFormComponent },
   {
     path: '',
     children: [
