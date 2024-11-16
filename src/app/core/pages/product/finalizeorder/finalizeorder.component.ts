@@ -29,7 +29,8 @@ product: Product = {
   price: 0,
   stockQuantity: 0,
   categoryId: 0,
-  imageUrl: ''
+  imageUrl: '',
+  id: 0
 };
 
 id: number = 0;

@@ -1,0 +1,16 @@
+
+    <div class="cart-item">
+        <img src="{{product.imageUrl}}" alt="Produto 1">
+        <div class="item-details">
+            <h2>{{product.name}}</h2>
+            <p>{{product.price}} R$</p>
+            <div class="quantity">
+                <button class="quantity-btn" (click)="lessQuantity()">-</button>
+                <input type="text" value="{{product.stockQuantity}}">
+                <button class="quantity-btn" (click)="addQuantity()">+</button>
+            </div>
+        </div>
+        <div class="item-total">
+            <p class="text-success">{{product.price*product.stockQuantity}} R$</p>
+            <button class="remove-btn" (click)="removeItem(product.id)">Remover</button>
+        </div>

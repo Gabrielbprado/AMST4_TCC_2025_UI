@@ -1,4 +1,17 @@
-<!-- pix-payment.component.html -->
+<div *ngIf="pixInfo.status === 'approved'" class="payment-approved-animation">
+  <div class="payment-approved">
+    <span class="payment-status">Pagamento Aprovado!</span>
+    <img src="assets/Images/pago.jpg" alt="Pago" class="payment-icon">
+  </div>
+</div>
+
+
+<div *ngIf="pixInfo.status !== 'approved'">
+  <div class="qr-code-container">
+    <img [src]="pixInfo.qrCodeBase64" alt="QR Code" class="qr-code">
+  </div>
+</div>
+
 <div class="pix-payment-container">
     <h1 class="product-title">{{ pixInfo.description }}</h1>
     
@@ -12,4 +25,3 @@
       <button (click)="copyPixKey()" class="copy-btn">Copiar Chave</button>
     </div>
   </div>
-  

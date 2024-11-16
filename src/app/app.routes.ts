@@ -10,8 +10,9 @@ import { ProductEditComponent } from './core/pages/product/product-edit/product-
 import { DeleteProductComponent } from './core/pages/product/delete-product/delete-product.component';
 import { ProductComponent } from './core/pages/product/product.component';
 import { PageNotFoundComponent } from './shared/Components/page-not-found/page-not-found.component';
-import { PixPaymentComponent } from './shared/Components/pix-payment/pix-payment.component';
-import { ProductDetailsComponent } from './product/product-details/product-details.component';
+import { PixPaymentComponent } from './core/pages/product/pix-payment/pix-payment.component';
+import { ProductDetailsComponent} from './core/pages/product/product-details/product-details.component';
+import { CartDetailsComponent } from './core/pages/product/cart-details/cart-details.component';
 
 
 export const routes: Routes = [
@@ -27,6 +28,7 @@ export const routes: Routes = [
   { path: 'product-delete', component: DeleteProductComponent },
   { path: 'pix-payment/:id', component: PixPaymentComponent },
   { path: 'product-details/:id', component: ProductDetailsComponent},
+  { path: 'cart-details', component: CartDetailsComponent},
   {
     path: '',
     children: [{ path: 'user-login', component: LoginComponent }],
@@ -34,7 +36,7 @@ export const routes: Routes = [
   {
     path: '',
     children: [
-      { path: 'admin//product', component: ProductComponent },
+      { path: 'admin/product', component: ProductComponent },
     ],
   },
   {

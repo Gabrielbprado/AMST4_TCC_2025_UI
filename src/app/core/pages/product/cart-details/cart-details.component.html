@@ -1,0 +1,25 @@
+<div class="cart-container">
+        <h1>Seu Carrinho</h1>
+
+        
+        <div *ngFor="let product of products" class="cart-items">
+            <app-cart-card [product]="product"></app-cart-card>
+        </div>
+
+        <div class="cart-summary">
+            <h2>Resumo do Pedido</h2>
+            <div class="summary-item">
+                <span>Subtotal</span>
+                <span>{{ totalPrice }}</span>
+            </div>
+            <div class="summary-item">
+                <span>Frete</span>
+                <span>R$ 50,00</span>
+            </div>
+            <div class="summary-total">
+                <span>Total</span>
+                <span>R$ 2.050,00</span>
+            </div>
+            <button class="checkout-btn">Finalizar Compra</button>
+        </div>
+    </div>

@@ -1,0 +1,128 @@
+.pix-payment-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f8f9fa;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.product-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.qr-code-container {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.qr-code-image {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.key-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  margin-top: 20px;
+}
+
+.key-container label {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.pix-key-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.copy-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.copy-btn:hover {
+  background-color: #45a049;
+}
+
+.copy-btn:active {
+  background-color: #388e3c;
+}
+
+.payment-approved-animation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  animation: fadeIn 1s ease-in;
+  background-color: #e0f7fa; /* Cor de fundo mais suave */
+  padding: 20px;
+  border-radius: 10px; /* Bordas arredondadas para suavizar a aparência */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave para destacar */
+}
+
+.payment-approved {
+  text-align: center;
+}
+
+.payment-status {
+  font-size: 36px; /* Aumenta o tamanho do texto para dar mais destaque */
+  font-weight: bold;
+  color: #28a745; /* Cor verde mais viva para indicar sucesso */
+  margin-bottom: 20px; /* Distância entre o texto e a imagem */
+}
+
+.payment-icon {
+  width: 100px; /* Aumenta o tamanho do ícone para torná-lo mais visível */
+  height: 100px;
+  margin-top: 10px;
+  animation: bounce 1.5s infinite;
+  border-radius: 50%; /* Torna a imagem redonda, caso seja necessário */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para destacar a imagem */
+}
+
+
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-10px);
+  }
+  100% {
+      transform: translateY(0);
+  }
+}
