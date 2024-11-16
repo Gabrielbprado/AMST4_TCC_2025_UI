@@ -25,8 +25,8 @@ export class ProductService {
   AddToCart(cart: Cart): Observable<any> {
     const url = `${this.url}/ShoppingCart`;
 
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiI1M2ZmMThlNS00ODYxLTQ3YWQtYWQyMy04MTE4MjI2OTg4Y2QiLCJuYmYiOjE3MzE2NjcwMTEsImV4cCI6MTczMTcyNzAxMSwiaWF0IjoxNzMxNjY3MDExfQ.70l-7q5g3MAWCMQptsEpKH4piUGWWBhoIVa_x-X8GM0';
+    const token = localStorage.getItem('token');
+
 
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
@@ -37,8 +37,8 @@ export class ProductService {
   GetCart(): Observable<Product[]> {
     const url = `${this.url}/ShoppingCart`;
 
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiI1M2ZmMThlNS00ODYxLTQ3YWQtYWQyMy04MTE4MjI2OTg4Y2QiLCJuYmYiOjE3MzE2NjcwMTEsImV4cCI6MTczMTcyNzAxMSwiaWF0IjoxNzMxNjY3MDExfQ.70l-7q5g3MAWCMQptsEpKH4piUGWWBhoIVa_x-X8GM0';
+    const token = localStorage.getItem('token');
+
 
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
@@ -50,8 +50,8 @@ export class ProductService {
   RemoveItem(id: number): Observable<any> {
     const url = `${this.url}/ShoppingCart/${id}`;
 
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiI1M2ZmMThlNS00ODYxLTQ3YWQtYWQyMy04MTE4MjI2OTg4Y2QiLCJuYmYiOjE3MzE2NjcwMTEsImV4cCI6MTczMTcyNzAxMSwiaWF0IjoxNzMxNjY3MDExfQ.70l-7q5g3MAWCMQptsEpKH4piUGWWBhoIVa_x-X8GM0';
+    const token = localStorage.getItem('token');
+
 
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
@@ -62,8 +62,8 @@ export class ProductService {
   RegisterProduct(product: FormData): Observable<any> {
     const url = `${this.url}/Product`;
 
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiI1M2ZmMThlNS00ODYxLTQ3YWQtYWQyMy04MTE4MjI2OTg4Y2QiLCJuYmYiOjE3MzE2NjcwMTEsImV4cCI6MTczMTcyNzAxMSwiaWF0IjoxNzMxNjY3MDExfQ.70l-7q5g3MAWCMQptsEpKH4piUGWWBhoIVa_x-X8GM0';
+    const token = localStorage.getItem('token');
+
 
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,

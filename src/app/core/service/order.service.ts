@@ -18,7 +18,8 @@ export class OrderService {
      
   DoOrder(order: Order): Observable<CreatePixResponse> {
     console.log('Fazendo pedido:', order);
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiI1M2ZmMThlNS00ODYxLTQ3YWQtYWQyMy04MTE4MjI2OTg4Y2QiLCJuYmYiOjE3MzE2NjcwMTEsImV4cCI6MTczMTcyNzAxMSwiaWF0IjoxNzMxNjY3MDExfQ.70l-7q5g3MAWCMQptsEpKH4piUGWWBhoIVa_x-X8GM0'
+    const token = localStorage.getItem('token');
+
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
@@ -43,7 +44,7 @@ export class OrderService {
   GetPaymentInfo(id: number) 
   {
     const url = `${this.URL}/${id}`;
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9zaWQiOiI1M2ZmMThlNS00ODYxLTQ3YWQtYWQyMy04MTE4MjI2OTg4Y2QiLCJuYmYiOjE3MzE2NjcwMTEsImV4cCI6MTczMTcyNzAxMSwiaWF0IjoxNzMxNjY3MDExfQ.70l-7q5g3MAWCMQptsEpKH4piUGWWBhoIVa_x-X8GM0'
+    const token = localStorage.getItem('token');
 
 
     const headers = new HttpHeaders({
