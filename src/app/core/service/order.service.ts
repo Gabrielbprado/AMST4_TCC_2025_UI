@@ -12,7 +12,7 @@ export class OrderService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private URL = 'https://localhost:7089/Order';
+  private URL = 'http://localhost:5282/Order';
   private apiUrl = 'https://api.mercadopago.com/v1/payments';
 
      

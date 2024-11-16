@@ -10,7 +10,7 @@ export class GptService {
 
   constructor(private http: HttpClient) {}
 
-  private url = 'https://localhost:7089';
+  private url = 'https://localhost:5282';
 
   GenerateDescription(title: string): Observable<ResponseGpt> {
     const url = `${this.url}/Gpt`;

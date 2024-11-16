@@ -15,76 +15,71 @@ import { Order } from '../../../Model/Order';
   styleUrl: './finalizeorder.component.css'
 })
 export class FinalizeorderComponent {
-selectedPaymentMethod: string | null = null;
+  selectedPaymentMethod: string | null = null;
+  savedCards = [
+    { id: 1, maskedNumber: '**** **** **** 1234', name: 'João Silva' },
+    { id: 2, maskedNumber: '**** **** **** 5678', name: 'Maria Oliveira' },
+  ];
 
-order: Order = {
-  productId: 0,
-  status: '',
-  shippingAddress: ''
-};
+  order: Order = {
+    productId: 0,
+    status: '',
+    shippingAddress: '',
+  };
 
-product: Product = {
-  name: '',
-  description: '',
-  price: 0,
-  stockQuantity: 0,
-  categoryId: 0,
-  imageUrl: '',
-  id: 0
-};
+  product: Product = {
+    name: '',
+    description: '',
+    price: 0,
+    stockQuantity: 0,
+    categoryId: 0,
+    imageUrl: '',
+    id: 0,
+  };
 
-id: number = 0;
+  id: number = 0;
 
-constructor(private productService: ProductService,private activatedRouter: ActivatedRoute,private orderService: OrderService,private router: Router) { }
+  constructor(
+    private productService: ProductService,
+    private activatedRouter: ActivatedRoute,
+    private orderService: OrderService,
+    private router: Router
+  ) {}
 
-ngOnInit(): void {
-  console.log('Finalize Order Component');
-  const idParam = this.activatedRouter.snapshot.paramMap.get('id');
-  console.log('ID do produto:', idParam);
-  if (idParam) {
-    this.id = +idParam;  
-    console.log('ID do produto:', this.id);
-    this.productService.GetById(this.id).subscribe(
+  ngOnInit(): void {
+    const idParam = this.activatedRouter.snapshot.paramMap.get('id');
+    if (idParam) {
+      this.id = +idParam;
+      this.productService.GetById(this.id).subscribe(
+        (response) => {
+          this.order.productId = this.id;
+          this.order.status = 'PENDING';
+          this.order.shippingAddress = 'Rua dos Bobos, 0';
+          this.product = response;
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    }
+  }
+
+  buyNow() {
+    this.orderService.DoOrder(this.order).subscribe(
       (response) => {
-        console.log(response);
-        this.order.productId = this.id;
-        this.order.status = 'PENDING';
-        this.order.shippingAddress = 'Rua dos Bobos, 0';
-        this.product = response;
+        this.router.navigate(['pix-payment', response.transactionId]);
       },
       (error) => {
-        console.error(error);
+        console.error('Erro ao finalizar pedido:', error);
       }
     );
   }
-}
-
-
-addToCart() {
-  console.log('Produto adicionado ao carrinho!');
-}
-
-buyNow() {
-  console.log('Produto comprado!');
-  this.orderService.DoOrder(this.order).subscribe(
-    (response) => {
-      console.log("response",response);
-      console.log(response);
-      this.router.navigate(['pix-payment',response.transactionId]);
-
-
-
-    },
-    (error) => {
-      console.error('Error posting news:', error);
-    }
-  );
-}
-
 
   selectPaymentMethod(method: string) {
     this.selectedPaymentMethod = method;
+  }
 
-    
+  selectSavedCard(card: any) {
+    console.log('Cartão Selecionado:', card);
   }
 }

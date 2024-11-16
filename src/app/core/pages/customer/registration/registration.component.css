@@ -1,86 +1,76 @@
 .container {
-    max-width: 500px; /* Aumenta a largura para maior conforto visual */
-    margin: 40px auto; /* Adiciona espaçamento no topo e base */
-    background: #f4f4f4; /* Cor de fundo mais suave */
-    border-radius: 15px; /* Bordas mais arredondadas */
-    padding: 30px 40px; /* Mais espaçamento interno */
-    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15); /* Sombra mais forte para destaque */
-    font-family: Arial, sans-serif;
-  }
-  
-  .right-panel {
-    text-align: center;
-  }
-  
-  .title {
-    font-size: 26px;
-    margin-bottom: 15px;
-    color: #333;
-  }
-  
-  .sub_title {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 20px;
-  }
-  
-  .input-container {
-    position: relative;
-    margin-bottom: 20px; /* Espaçamento maior entre os inputs */
-  }
-  
-  .input-container i {
-    position: absolute;
-    left: 15px;
-    top: 14px;
-    color: #999;
-  }
-  
-  input {
-    width: 100%;
-    padding: 12px 15px 12px 50px; /* Ajuste de espaçamento interno */
-    border: 1px solid #ccc;
-    border-radius: 8px; /* Bordas mais arredondadas */
-    font-size: 15px; /* Fonte maior */
-    transition: 0.3s ease;
-  }
-  
-  input:focus {
-    border-color: #0071e3;
-    box-shadow: 0 0 8px rgba(0, 113, 227, 0.5);
-  }
-  
-  .signup-btn {
-    width: 100%;
-    padding: 12px 15px; /* Botão maior */
-    background-color: #0071e3;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .signup-btn::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.2);
-    transition: left 0.4s ease;
-  }
-  
-  .signup-btn:hover::after {
-    left: 0;
-  }
-  
-  .signup-btn:active {
-    background-color: #005bb5;
-    transform: scale(0.97); /* Efeito menor ao clicar */
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+}
+
+.form-card {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+}
+
+h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input:focus,
+select:focus {
+  border-color: #4caf50;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}

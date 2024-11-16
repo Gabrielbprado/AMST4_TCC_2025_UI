@@ -11,7 +11,7 @@ import { Cart } from '../../Model/Cart';
 export class ProductService {
   constructor(private http: HttpClient) {}
 
-  private url = 'https://localhost:7089';
+  private url = 'https://localhost:5282';
 
   GetAll(): Observable<product[]> {
     const url = `${this.url}/Product`;

@@ -1,98 +1,92 @@
 <div class="container">
     <div class="order-details">
-        <div class="title">
-            <h2>Finalização do Pedido</h2>
-        </div>
-        <div class="details-section">
-            <h3>Detalhes do Pedido</h3>
-            <ul>
-                <li>
-                    <span>Nome do Produto:</span>
-                    <span class="value">{{product.name}}</span>
-                </li>
-                <li>
-                    <span>Quantidade:</span>
-                    <span class="value">2</span>
-                </li>
-                <li>
-                    <span>Preço Unitário:</span>
-                    <span class="value">{{product.price}}</span>
-                </li>
-                <li>
-                    <span>Frete:</span>
-                    <span class="value">R$ 20,00</span>
-                </li>
-                <li>
-                    <span>Total:</span>
-                    <span class="value">{{product.price}}</span>
-                </li>
-            </ul>
-        </div>
-        <div class="payment-method">
-            <h3>Método de Pagamento</h3>
-            <ul>
-              <li>
-                <input
-                  type="radio"
-                  id="credit-card"
-                  name="paymentMethod"
-                  (change)="selectPaymentMethod('credit-card')"
-                />
-                <label for="credit-card">Cartão de Crédito</label>
-              </li>
-              <li>
-                <input
-                  type="radio"
-                  id="pix"
-                  name="paymentMethod"
-                  (change)="selectPaymentMethod('pix')"
-                />
-                <label for="pix">Pix</label>
-              </li>
-              <li>
-                <input
-                  type="radio"
-                  id="boleto"
-                  name="paymentMethod"
-                  (change)="selectPaymentMethod('boleto')"
-                />
-                <label for="boleto">Boleto</label>
-              </li>
-            </ul>
-          </div>
-          
-            <div [ngClass]="{ 'additional-info': true, 'active': selectedPaymentMethod === 'credit-card' }">
-                <label for="card-number">Número do Cartão:</label>
-                <input type="text" id="card-number" />
-                <label for="card-number">Nome do Cartão:</label>
-                <input type="text" id="card-number" />
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="text-center">
-                            <label for="card-expiry text-center">Validade:</label>
-                        </div>
-                        
-                        <input type="text" id="card-expiry" />
-                    </div>
-                    <div class="col-md-6">
-                        <div class="text-center">
-                            <label for="card-cvc">CVC:</label>
-                        </div>
-                        <input type="text" id="card-cvc" />
-                    </div>
-                </div>
-                
-                
-            </div>
-            <div [ngClass]="{ 'additional-info': true, 'active': selectedPaymentMethod === 'pix' || selectedPaymentMethod === 'boleto' }">
-                <label for="cpf">CPF:</label>
-                <input type="text" id="cpf" />
-            </div>
+      <div class="title">
+        <h2>Finalização do Pedido</h2>
+      </div>
+      <div class="details-section">
+        <h3>Detalhes do Pedido</h3>
+        <ul>
+          <li>
+            <span>Nome do Produto:</span>
+            <span class="value">{{ product.name }}</span>
+          </li>
+          <li>
+            <span>Quantidade:</span>
+            <span class="value">2</span>
+          </li>
+          <li>
+            <span>Preço Unitário:</span>
+            <span class="value">{{ product.price | currency: 'BRL' }}</span>
+          </li>
+          <li>
+            <span>Frete:</span>
+            <span class="value">R$ 20,00</span>
+          </li>
+          <li>
+            <span>Total:</span>
+            <span class="value">{{ product.price + 20 | currency: 'BRL' }}</span>
+          </li>
+        </ul>
+      </div>
+      <div class="payment-method">
+        <h3>Método de Pagamento</h3>
+        <ul>
+          <li>
+            <input
+              type="radio"
+              id="credit-card"
+              name="paymentMethod"
+              (change)="selectPaymentMethod('credit-card')"
+            />
+            <label for="credit-card">Cartão de Crédito</label>
+          </li>
+          <li>
+            <input
+              type="radio"
+              id="pix"
+              name="paymentMethod"
+              (change)="selectPaymentMethod('pix')"
+            />
+            <label for="pix">Pix</label>
+          </li>
+          <li>
+            <input
+              type="radio"
+              id="boleto"
+              name="paymentMethod"
+              (change)="selectPaymentMethod('boleto')"
+            />
+            <label for="boleto">Boleto</label>
+          </li>
+        </ul>
+      </div>
   
-          
-        <button class="btn" (click)="buyNow()">Finalizar Pedido</button>
+      <!-- Cartões Salvos -->
+      <div *ngIf="selectedPaymentMethod === 'credit-card'" class="additional-info active">
+        <h3>Cartões Salvos</h3>
+        <ul>
+          <li *ngFor="let card of savedCards">
+            <div class="card-item">
+              <span>{{ card.maskedNumber }}</span>
+              <button (click)="selectSavedCard(card)" class="btn small">Selecionar</button>
+            </div>
+          </li>
+        </ul>
+        <hr />
+      </div>
+  
+      <!-- Pix ou Boleto -->
+      <div
+        [ngClass]="{ 'additional-info': true, 'active': selectedPaymentMethod === 'pix' || selectedPaymentMethod === 'boleto' }"
+      >
+        <label for="cpf">CPF:</label>
+        <input type="text" id="cpf" placeholder="Digite seu CPF" />
+      </div>
+  
+      <button class="btn" (click)="buyNow()">Finalizar Pedido</button>
     </div>
     <div class="product-image">
-        <img [src]="product.imageUrl" alt="Produto" width="400px" height="400px">
+      <img [src]="product.imageUrl" alt="Produto" />
     </div>
-</div>
+  </div>
+  
