@@ -1,0 +1,152 @@
+   h2,
+   h3 {
+       color: #004aad;
+   }
+
+   h1 {
+       color: #e5e5e5;
+   }
+
+   p {
+       color: #555;
+   }
+
+   img {
+       max-width: 100%;
+       border-radius: 10px;
+       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+   }
+
+   /* Container Principal */
+   .about-us {
+       padding: 40px 20px;
+       max-width: 1200px;
+       margin: 20px auto;
+       background-color: #ffffff;
+       border-radius: 20px;
+       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   }
+
+   /* Hero Section */
+   .about-hero {
+       text-align: center;
+       padding: 60px 20px;
+       background: linear-gradient(135deg, #004aad, #007bff);
+       color: #fff;
+       border-radius: 10px;
+   }
+
+   .about-hero h1 {
+       font-size: 2.5rem;
+       margin-bottom: 10px;
+   }
+
+   .about-hero p {
+       font-size: 1.2rem;
+       margin: 10px auto;
+       max-width: 600px;
+       color: #ffffff;
+   }
+
+   /* About Sections */
+   .about-section {
+       margin: 40px 0;
+   }
+
+   .about-content {
+       display: flex;
+       align-items: center;
+       gap: 30px;
+   }
+
+   .about-content.reverse {
+       flex-direction: row-reverse;
+   }
+
+   .about-text {
+       flex: 1;
+   }
+
+   .about-text h2 {
+       font-size: 1.8rem;
+       margin-bottom: 15px;
+       color: #004aad;
+   }
+
+   .about-text p,
+   .about-text ul {
+       font-size: 1rem;
+       color: #555;
+   }
+
+   .about-text ul {
+       list-style: none;
+       padding: 0;
+   }
+
+   .about-text ul li {
+       margin-bottom: 10px;
+   }
+
+   .about-text ul li strong {
+       color: #007bff;
+   }
+
+   .about-image {
+       flex: 1;
+       text-align: center;
+   }
+
+   /* Call to Action */
+   .about-cta {
+       text-align: center;
+       padding: 40px 20px;
+       background: #004aad;
+       color: #fff;
+       border-radius: 10px;
+   }
+
+   .about-cta h3 {
+       font-size: 1.8rem;
+       margin-bottom: 10px;
+   }
+
+   .about-cta p {
+       font-size: 1rem;
+       margin-bottom: 20px;
+   }
+
+   .btn-primary {
+       padding: 10px 20px;
+       font-size: 1rem;
+       color: #fff;
+       background: #007bff;
+       border: none;
+       border-radius: 5px;
+       cursor: pointer;
+       transition: background 0.3s ease;
+   }
+
+   .btn-primary:hover {
+       background: #0056b3;
+   }
+
+   /* Responsividade */
+   @media (max-width: 768px) {
+       .about-content {
+           flex-direction: column;
+           text-align: center;
+       }
+
+       .about-content.reverse {
+           flex-direction: column;
+       }
+
+       .about-hero h1 {
+           font-size: 2rem;
+       }
+
+       .about-hero p {
+           font-size: 1rem;
+       }
+   }
