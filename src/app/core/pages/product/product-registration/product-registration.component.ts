@@ -1,92 +1,84 @@
-import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProductService } from '../../../service/Product/product.service';
 import { GptService } from '../../../service/gpt.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product-registration',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule
-  ],
+  imports: [ReactiveFormsModule,FormsModule,CommonModule],
   templateUrl: './product-registration.component.html',
-  styleUrl: './product-registration.component.css'
+  styleUrls: ['./product-registration.component.css'],
 })
 export class ProductRegistrationComponent {
-  isActive: boolean = false;
+  isActive = false;
   orderForm: FormGroup;
+  imageFiles: File[] = []; 
+  imagePreviews: string[] = []; 
 
-  constructor(private fb: FormBuilder, private service: ProductService,private gptService: GptService) {
+  constructor(private fb: FormBuilder, private service: ProductService, private gptService: GptService) {
     this.orderForm = this.fb.group({
       name: ['', Validators.required],
       description: [''],
       price: [null, [Validators.required, Validators.min(0)]],
       stockQuantity: [null, [Validators.required, Validators.min(0)]],
       categoryId: ['', Validators.required],
-      image: [null]
     });
   }
 
   toggleAutoDescription(): void {
     this.isActive = !this.isActive;
-  
+
     if (this.isActive) {
       const productName: string = this.orderForm.get('name')?.value;
-      console.log('Nome do produto:', productName);
-  
       if (productName) {
-        this.gptService.GenerateDescription(productName).subscribe({
-          next: (response) => {
-            console.log('Descrição gerada:', response.description);
-            this.orderForm.patchValue({ description: response.description });
-          },
+        this.gptService.GenerateDescription(productName).subscribe((response) => {
+          this.orderForm.patchValue({ description: response.description });
         });
       } else {
-        console.error('O nome do produto é necessário para gerar a descrição.');
-        this.isActive = false; // Desativa o toggle caso o nome esteja vazio
+        this.isActive = false;
       }
-    } else {
-      this.orderForm.patchValue({ description: '' });
-    }
-  }
-  
-
-  RegisterProduct(): void {
-    if (this.orderForm.valid) {
-      const formData = new FormData();
-  
-      const price = this.orderForm.get('price')?.value;
-      const priceWithDot = price ? price.toString().replace(',', '.') : null;
-  
-      this.orderForm.patchValue({ price: priceWithDot });
-  
-      Object.entries(this.orderForm.value).forEach(([key, value]) => {
-        if (key === 'image' && value) {
-          formData.append('image', value as File);
-        } else {
-          formData.append(key, value as string);
-        }
-      });
-  
-      this.service.RegisterProduct(formData).subscribe({
-        next: (response) => console.log('Produto cadastrado:', response),
-        error: (error) => console.error('Erro ao cadastrar produto:', error)
-      });
-    } else {
-      console.log('Formulário inválido!');
     }
   }
 
-  onFileChange(event: any): void {
+RegisterProduct(): void {
+  if (this.orderForm.valid) {
+    const formData = new FormData();
+    
+    // Append the product data
+    Object.keys(this.orderForm.value).forEach((key) => {
+      if (key !== 'images') {
+        formData.append(key, this.orderForm.get(key)?.value);
+      }
+    });
+
+    // Append the images as IFormFile
+    this.imageFiles.forEach((file, index) => {
+      formData.append('images', file, file.name);
+      // You can also append 'isMain' for the first image
+      if (index === 0) {
+        formData.append('isMain', 'true');
+      } else {
+        formData.append('isMain', 'false');
+      }
+    });
+
+    console.log('Formulário válido! Enviando dados:', formData);
+    this.service.RegisterProduct(formData).subscribe({
+      next: (response) => console.log('Produto cadastrado:', response),
+      error: (error) => console.error('Erro ao cadastrar produto:', error),
+    });
+  } else {
+    console.log('Formulário inválido!');
+  }
+}
+
+  onFileChange(event: any, index: number): void {
     const file = event.target.files[0];
     if (file) {
-      this.orderForm.patchValue({ image: file });
-    } else {
-      this.orderForm.patchValue({ image: null });
+      this.imageFiles[index] = file;
+      this.imagePreviews[index] = URL.createObjectURL(file);
     }
   }
-  
-
 }

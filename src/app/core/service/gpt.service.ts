@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ResponseGpt } from '../Model/ResponseGpt';
+import { environment } from '../../environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class GptService {
 
   constructor(private http: HttpClient) {}
 
-  private url = 'https://localhost:5282';
+  private url = environment.apiBaseUrl;
 
   GenerateDescription(title: string): Observable<ResponseGpt> {
     const url = `${this.url}/Gpt`;

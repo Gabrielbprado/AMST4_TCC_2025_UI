@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { product } from '../../Model/ShortProduct';
 import { Product } from '../../Model/Product';
 import { Cart } from '../../Model/Cart';
+import { environment } from '../../../environment';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ import { Cart } from '../../Model/Cart';
 export class ProductService {
   constructor(private http: HttpClient) {}
 
-  private url = 'https://localhost:5282';
+  private url = environment.apiBaseUrl;
 
   GetAll(): Observable<product[]> {
     const url = `${this.url}/Product`;
@@ -70,5 +71,10 @@ export class ProductService {
     });
 
     return this.http.post<any>(url, product, { headers });
+  }
+
+  FilterByCategory(categoryId: number): Observable<product[]> {
+    const url = `${this.url}/Product/filter-category/${categoryId}`;
+    return this.http.get<product[]>(url);
   }
 }

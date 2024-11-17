@@ -21,8 +21,8 @@ export class ProductDetailsComponent implements OnInit {
     price: 1,
     stockQuantity: 1,
     categoryId: 1,
-    imageUrl: 'https://amsnewsapi.blob.core.windows.net/e56a6ee0-cd01-46bc-a602-a0bf1efe36f6/38d06445-2716-475b-86b3-cc2c9d8a5dbd.jpg?sv=2024-11-04&se=2024-11-11T21%3A26%3A40Z&sr=b&sp=r&sig=5KPs3Sl0m0Ul5HeHn0UgypZA6ru1U3bQPl2F8hIwlX4%3D',
-    id: 0
+    id: 0,
+    images: []
   };
   requestCreateOrder: Order = {
     productId: 1,
@@ -64,6 +64,8 @@ export class ProductDetailsComponent implements OnInit {
         (response) => {
           console.log(response);
           this.product = response;
+          console.log("this.product");
+          console.log(this.product);
         },
         (error) => {
           console.error(error);

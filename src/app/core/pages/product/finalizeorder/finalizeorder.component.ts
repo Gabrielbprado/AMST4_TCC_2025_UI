@@ -33,8 +33,8 @@ export class FinalizeorderComponent {
     price: 0,
     stockQuantity: 0,
     categoryId: 0,
-    imageUrl: '',
     id: 0,
+    images: []
   };
 
   id: number = 0;

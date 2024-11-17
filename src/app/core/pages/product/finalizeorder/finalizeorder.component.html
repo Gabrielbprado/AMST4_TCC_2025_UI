@@ -61,7 +61,6 @@
         </ul>
       </div>
   
-      <!-- Cartões Salvos -->
       <div *ngIf="selectedPaymentMethod === 'credit-card'" class="additional-info active">
         <h3>Cartões Salvos</h3>
         <ul>
@@ -75,7 +74,6 @@
         <hr />
       </div>
   
-      <!-- Pix ou Boleto -->
       <div
         [ngClass]="{ 'additional-info': true, 'active': selectedPaymentMethod === 'pix' || selectedPaymentMethod === 'boleto' }"
       >
@@ -86,7 +84,7 @@
       <button class="btn" (click)="buyNow()">Finalizar Pedido</button>
     </div>
     <div class="product-image">
-      <img [src]="product.imageUrl" alt="Produto" />
+      <img [src]="product.images[0]" alt="Produto" />
     </div>
   </div>
   

@@ -51,15 +51,9 @@
                             <i class="fas fa-list"></i>
                             Categorias
                         </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item" href="#">Livros</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Informática</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Lazer</a>
+                        <ul class="dropdown-menu" >
+                            <li *ngFor="let category of categories">
+                                <a class="dropdown-item" (click)="onCategorySelect(category.id)">{{category.description}}</a>
                             </li>
                         </ul>
                     </li>
@@ -109,7 +103,7 @@
                         <button class="nav-link" (click)="buyNow()">
                            
                                 <i class="fas fa-shopping-cart"></i>
-                                <span class="badge">3</span> <!-- Número de itens no carrinho -->
+                                <span class="badge">3</span> 
 
                         </button>
                         

@@ -1,105 +1,135 @@
 <div class="product-registration-container">
-    <h2>Cadastrar Produto</h2>
-    <form [formGroup]="orderForm" (ngSubmit)="RegisterProduct()" class="product-form">
-      <div class="form-group">
-        <label for="product-name">
-          <i class="fas fa-tag"></i> Nome do Produto
+  <h2>Cadastrar Produto</h2>
+  <form [formGroup]="orderForm" (ngSubmit)="RegisterProduct()" class="product-form">
+    <div class="form-group">
+      <label for="product-name">
+        <i class="fas fa-tag"></i> Nome do Produto
+      </label>
+      <input
+        formControlName="name"
+        type="text"
+        id="product-name"
+        placeholder="Ex: Smartphone Samsung Galaxy"
+        required
+      />
+      <small *ngIf="orderForm.get('name')?.touched && orderForm.get('name')?.hasError('required')">
+        Nome é obrigatório.
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="description">
+        <i class="fas fa-align-left"></i> Descrição
+      </label>
+      <div class="description-field">
+        <textarea
+          formControlName="description"
+          id="description"
+          placeholder="Detalhes do produto, funcionalidades e benefícios"
+        ></textarea>
+        <button
+          type="button"
+          title="Gerar descrição automática"
+          (click)="toggleAutoDescription()"
+          class="auto-description"
+          [class.active]="isActive"
+        >
+          <i class="fas fa-pencil-alt"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="form-group-inline">
+      <div>
+        <label for="price">
+          <i class="fas fa-dollar-sign"></i> Preço (R$)
         </label>
         <input
-          formControlName="name"
-          type="text"
-          id="product-name"
-          placeholder="Ex: Smartphone Samsung Galaxy"
-          required
+          formControlName="price"
+          type="number"
+          id="price"
+          placeholder="Ex: 199.90"
         />
-        <small *ngIf="orderForm.get('name')?.touched && orderForm.get('name')?.hasError('required')">
-          Nome é obrigatório.
+        <small *ngIf="orderForm.get('price')?.touched && orderForm.get('price')?.hasError('required')">
+          Preço é obrigatório.
         </small>
       </div>
-  
-      <div class="form-group">
-        <label for="description">
-          <i class="fas fa-align-left"></i> Descrição
-        </label>
-        <div class="description-field">
-          <textarea
-            formControlName="description"
-            id="description"
-            placeholder="Detalhes do produto, funcionalidades e benefícios"
-          ></textarea>
-          <button
-            type="button"
-            title="Gerar descrição automática"
-            (click)="toggleAutoDescription()"
-            class="auto-description"
-            [class.active]="isActive"
-          >
-            <i class="fas fa-pencil-alt"></i>
-          </button>
-        </div>
-      </div>
-  
-      <div class="form-group-inline">
-        <div>
-          <label for="price">
-            <i class="fas fa-dollar-sign"></i> Preço (R$)
-          </label>
-          <input
-            formControlName="price"
-            type="number"
-            id="price"
-            placeholder="Ex: 199.90"
-          />
-          <small *ngIf="orderForm.get('price')?.touched && orderForm.get('price')?.hasError('required')">
-            Preço é obrigatório.
-          </small>
-        </div>
-        <div>
-          <label for="stock">
-            <i class="fas fa-box"></i> Estoque
-          </label>
-          <input
-            formControlName="stockQuantity"
-            type="number"
-            id="stock"
-            placeholder="Qtd"
-          />
-          <small *ngIf="orderForm.get('stockQuantity')?.touched && orderForm.get('stockQuantity')?.hasError('required')">
-            Estoque é obrigatório.
-          </small>
-        </div>
-      </div>
-  
-      <div class="form-group">
-        <label for="category">
-          <i class="fas fa-folder"></i> Categoria
-        </label>
-        <select formControlName="categoryId" id="category" required>
-          <option value="" disabled selected>Selecione uma categoria</option>
-          <option value="1">Eletrônicos</option>
-          <option value="2">Roupas</option>
-          <option value="3">Casa</option>
-          <option value="4">Livros</option>
-          <option value="0">Outros</option>
-        </select>
-      </div>
-  
-      <div class="form-group">
-        <label for="images">
-          <i class="fas fa-camera"></i> Imagens do Produto (até 3)
+      <div>
+        <label for="stock">
+          <i class="fas fa-box"></i> Estoque
         </label>
         <input
-          type="file"
-          id="images"
-          accept="image/*"
-          (change)="onFileChange($event)"
+          formControlName="stockQuantity"
+          type="number"
+          id="stock"
+          placeholder="Qtd"
         />
-        <small class="image-info">Máximo de 3 imagens.</small>
+        <small *ngIf="orderForm.get('stockQuantity')?.touched && orderForm.get('stockQuantity')?.hasError('required')">
+          Estoque é obrigatório.
+        </small>
       </div>
-  
-      <div class="form-group">
-        <button class="submit-btn" type="submit">Cadastrar Produto</button>
+    </div>
+
+    <div class="form-group">
+      <label for="category">
+        <i class="fas fa-folder"></i> Categoria
+      </label>
+      <select formControlName="categoryId" id="category" required>
+        <option value="" disabled selected>Selecione uma categoria</option>
+        <option value="1">Eletrônicos</option>
+        <option value="2">Roupas</option>
+        <option value="3">Casa</option>
+        <option value="4">Livros</option>
+        <option value="0">Outros</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="images">
+        <i class="fas fa-camera"></i> Imagens do Produto (1 principal + 3 adicionais)
+      </label>
+      <div class="images-upload">
+        <label class="upload-btn">
+          <i class="fas fa-upload"></i> Imagem Principal
+          <input
+            type="file"
+            (change)="onFileChange($event, 0)"
+            accept="image/*"
+          />
+        </label>
+        <label class="upload-btn">
+          <i class="fas fa-upload"></i> Imagem 1
+          <input
+            type="file"
+            (change)="onFileChange($event, 1)"
+            accept="image/*"
+          />
+        </label>
+        <label class="upload-btn">
+          <i class="fas fa-upload"></i> Imagem 2
+          <input
+            type="file"
+            (change)="onFileChange($event, 2)"
+            accept="image/*"
+          />
+        </label>
+        <label class="upload-btn">
+          <i class="fas fa-upload"></i> Imagem 3
+          <input
+            type="file"
+            (change)="onFileChange($event, 3)"
+            accept="image/*"
+          />
+        </label>
+
+        <div class="image-previews">
+          <img *ngFor="let image of imagePreviews; let i = index" [src]="image" [alt]="'Imagem ' + (i + 1)" />
+        </div>
       </div>
-    </form>
-  </div>
-  
+    </div>
+
+    <div class="form-group">
+      <button class="submit-btn" type="submit">Cadastrar Produto</button>
+    </div>
+  </form>
+</div>

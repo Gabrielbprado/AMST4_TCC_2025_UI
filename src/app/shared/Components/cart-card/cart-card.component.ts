@@ -17,8 +17,8 @@ export class CartCardComponent  {
     price: 0,
     stockQuantity: 0,
     categoryId: 0,
-    imageUrl: '',
-    id: 0
+    id: 0,
+    images: []
   };
 
   constructor(private service: ProductService) {}

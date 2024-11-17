@@ -1,10 +1,10 @@
 <div class="product-details-container">
     <div class="product-images">
-        <img [src]="product.imageUrl" alt="Produto Principal" class="main-image">
+        <img [src]="product.images[0].imageUrl" alt="Produto Principal" class="main-image">
         <div class="thumbnail-images">
-            <img src="https://via.placeholder.com/100" alt="Imagem Miniatura 1">
-            <img src="https://via.placeholder.com/100" alt="Imagem Miniatura 2">
-            <img src="https://via.placeholder.com/100" alt="Imagem Miniatura 3">
+            <img [src]="product.images[1].imageUrl" alt="Imagem Miniatura 3">
+            <img [src]="product.images[2].imageUrl" alt="Imagem Miniatura 1">
+            <img [src]="product.images[3].imageUrl" alt="Imagem Miniatura 2">
         </div>
     </div>
 

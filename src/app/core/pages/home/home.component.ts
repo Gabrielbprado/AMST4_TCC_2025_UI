@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProductComponent } from "../product/product.component";
@@ -6,6 +6,8 @@ import { ProductCardComponent } from '../../../core/pages/product/product-card/p
 import { ProductsComponent } from '../../../core/pages/product/products/products.component';
 import { ProductService } from '../../service/Product/product.service';
 import { product } from '../../Model/ShortProduct';
+import { Subscription } from 'rxjs';
+import { CategoryCommunicationService } from '../../service/category-communication.service';
 
 @Component({
   selector: 'app-home',
@@ -14,12 +16,13 @@ import { product } from '../../Model/ShortProduct';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent implements OnInit
+export class HomeComponent implements OnInit, OnDestroy
 {
-  constructor(private service: ProductService) { }
- 
+  @Input() categoryId!: number;  
+  constructor(private service: ProductService, private categoryCommunicationService: CategoryCommunicationService
+  ) { }
+  private categorySubscription: Subscription = Subscription.EMPTY;
   listProducts: product[] = [];
-
   categories: product[] = [
     {
       name: 'Eletrônicos', imageUrl: 'https://th.bing.com/th?id=OIP.RYZ8pbxjqQNQ50ytCgXpDAHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2',
@@ -73,26 +76,58 @@ export class HomeComponent implements OnInit
     }
   ];
 
-  ngOnInit(): void
-  {
+
+  ngOnInit(): void {
+    // Se inscreve para escutar mudanças no categoryId
+    this.categorySubscription = this.categoryCommunicationService.category$.subscribe(
+      (categoryId) => {
+        console.log('Categoria selecionada:', categoryId); // Para depuração
+        this.filterByCategory(categoryId);
+      }
+    );
+    
+    // Carrega os produtos inicialmente sem filtro
     this.service.GetAll().subscribe(
       (data: product[]) => {
         this.listProducts = data;
         this.categories = data;
         this.featuredProducts = data;
-        this.bestSellers = data;
-        console.log(data);
-        console.log(this.listProducts);
+        this.bestSellers = data;  
+        
       },
       (error: any) => {
         console.log(error);
       }
-    );  
+    );
   }
 
+  ngOnDestroy(): void {
+    if (this.categorySubscription) {
+      this.categorySubscription.unsubscribe();
+    }
+  }
 
-
-
-
+  filterByCategory(categoryId: number): void {
+    if (categoryId) {
+      this.service.FilterByCategory(categoryId).subscribe(
+        (response) => {
+          this.featuredProducts = response;
+          console.log('Produtos filtrados:', this.listProducts); 
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    } else {
+      this.service.GetAll().subscribe(
+        (response) => {
+          this.listProducts = response;
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    }
+}
 
 }

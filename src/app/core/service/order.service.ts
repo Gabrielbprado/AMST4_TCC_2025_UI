@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CreatePixResponse } from '../Model/CreatePixResponse';
 import { Observable } from 'rxjs';
 import { Order } from '../Model/Order';
+import { environment } from '../../environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class OrderService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private URL = 'http://localhost:5282/Order';
+  private URL = environment.apiBaseUrl;
   private apiUrl = 'https://api.mercadopago.com/v1/payments';
 
      
