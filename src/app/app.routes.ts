@@ -11,11 +11,13 @@ import { DeleteProductComponent } from './core/pages/product/delete-product/dele
 import { ProductComponent } from './core/pages/product/product.component';
 import { PageNotFoundComponent } from './shared/Components/page-not-found/page-not-found.component';
 import { PixPaymentComponent } from './core/pages/product/pix-payment/pix-payment.component';
-import { ProductDetailsComponent} from './core/pages/product/product-details/product-details.component';
+import { ProductDetailsComponent } from './core/pages/product/product-details/product-details.component';
 import { CartDetailsComponent } from './core/pages/product/cart-details/cart-details.component';
 import { RegisterAddressComponent } from './core/pages/customer/register-address/register-address.component';
 import { AddCardComponent } from './core/pages/customer/add-card/add-card.component';
 import { ProductsSellerComponent } from './core/pages/Seller/products-seller/products-seller.component';
+import { PaymentCardFormComponent } from './core/pages/product/payment-card-form/payment-card-form.component';
+
 
 
 export const routes: Routes = [
@@ -30,11 +32,12 @@ export const routes: Routes = [
   { path: 'product-edit', component: ProductEditComponent },
   { path: 'product-delete', component: DeleteProductComponent },
   { path: 'pix-payment/:id', component: PixPaymentComponent },
-  { path: 'product-details/:id', component: ProductDetailsComponent},
-  { path: 'cart-details', component: CartDetailsComponent},
+  { path: 'product-details/:id', component: ProductDetailsComponent },
+  { path: 'cart-details', component: CartDetailsComponent },
   { path: 'register-address', component: RegisterAddressComponent },
   { path: 'register-card', component: AddCardComponent },
   { path: 'product-seller', component: ProductsSellerComponent },
+  { path: 'payment-card-form', component: PaymentCardFormComponent },
   {
     path: '',
     children: [
