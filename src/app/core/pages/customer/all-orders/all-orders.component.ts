@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-all-orders',
   standalone: true,
   imports: [CommonModule,FormsModule],
-  templateUrl: './all-orders.component.html',
+templateUrl: './all-orders.component.html',
   styleUrl: './all-orders.component.css'
 })
 export class AllOrdersComponent implements OnInit{
@@ -38,9 +38,9 @@ export class AllOrdersComponent implements OnInit{
     loadProducts() {
       // Aqui você deve carregar os produtos de um serviço ou API
       this.products = [
-        { id: 1, name: 'iPhone 13 Pro', description: 'Smartphone Apple', price: 9999.99, stockQuantity: 10, categoryId: 1, imageUrl: 'https://via.placeholder.com/150' },
-        { id: 2, name: 'MacBook Pro', description: 'Laptop Apple', price: 14999.99, stockQuantity: 5, categoryId: 1, imageUrl: 'https://via.placeholder.com/150' },
-        { id: 3, name: 'AirPods Pro', description: 'Fones de ouvido Apple', price: 1599.99, stockQuantity: 20, categoryId: 2, imageUrl: 'https://via.placeholder.com/150' }
+        { id: 1, name: 'iPhone 13 Pro', description: 'Smartphone Apple', price: 9999.99, stockQuantity: 10, categoryId: 1, images: [] },
+        { id: 2, name: 'MacBook Pro', description: 'Laptop Apple', price: 14999.99, stockQuantity: 5, categoryId: 1,images: [] },
+        { id: 3, name: 'AirPods Pro', description: 'Fones de ouvido Apple', price: 1599.99, stockQuantity: 20, categoryId: 2, images: [] }
       ];
     }
   
