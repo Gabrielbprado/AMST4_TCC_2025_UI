@@ -6,11 +6,12 @@ import { ProductService } from '../../../service/Product/product.service';
 import { Order } from '../../../Model/Order';
 import { Product } from '../../..//Model/Product';
 import { Cart } from '../../../Model/Cart';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css',
 })
@@ -94,10 +95,10 @@ export class ProductDetailsComponent implements OnInit {
   }
   swapImages(event: Event): void {
     const clickedThumbnail = event.target as HTMLImageElement;
-    const mainImage = document.getElementById('main-image') as HTMLImageElement;
+    const mainImage = document.querySelector('.main-image') as HTMLImageElement;
   
     if (clickedThumbnail && mainImage) {
-      // Troca os src entre a miniatura clicada e a imagem principal
+      // Troca os `src` entre a miniatura clicada e a imagem principal
       const tempSrc = mainImage.src;
       mainImage.src = clickedThumbnail.src;
       clickedThumbnail.src = tempSrc;
@@ -108,5 +109,6 @@ export class ProductDetailsComponent implements OnInit {
       clickedThumbnail.classList.add('active');
     }
   }
+  
   
 }

@@ -139,40 +139,40 @@ h2 {
     color: #28a745;
     font-weight: bold;
 }
-
 .product-images {
-    flex: 1;
-    padding: 20px;
-    text-align: center;
-}
-
-.main-image {
-    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .main-image {
+    width: 100%;
     max-width: 400px;
-    height: auto;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.thumbnail-images {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .thumbnail-images {
     display: flex;
     justify-content: center;
     gap: 10px;
-}
-
-.thumbnail-images img {
-    width: 70px;
+  }
+  
+  .thumbnail-images img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
     cursor: pointer;
-    border-radius: 5px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.thumbnail-images img:hover {
+    border: 2px solid transparent;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .thumbnail-images img:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.thumbnail-images img.active {
-    border: 2px solid #007bff;
-}
+  }
+  
+  .thumbnail-images img.active {
+    border-color: #007bff;
+  }
