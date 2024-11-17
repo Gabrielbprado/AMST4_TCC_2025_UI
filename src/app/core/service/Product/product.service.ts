@@ -9,6 +9,12 @@ import { Cart } from '../../Model/Cart';
   providedIn: 'root',
 })
 export class ProductService {
+  getProductById(id: number) {
+    throw new Error('Method not implemented.');
+  }
+  updateProduct(productId: number, formData: FormData) {
+    throw new Error('Method not implemented.');
+  }
   constructor(private http: HttpClient) {}
 
   private url = 'https://localhost:5282';
@@ -70,5 +76,8 @@ export class ProductService {
     });
 
     return this.http.post<any>(url, product, { headers });
+  }
+  update(id: number, formData: FormData): Observable<Product> {
+    return this.http.put<Product>(`${this.url}/${id}`, formData);
   }
 }

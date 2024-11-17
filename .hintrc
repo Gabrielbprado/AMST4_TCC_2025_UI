@@ -17,6 +17,20 @@
         "select-name": "off"
       }
     ],
-    "button-type": "off"
+    "button-type": "off",
+    "axe/keyboard": [
+      "default",
+      {
+        "nested-interactive": "off"
+      }
+    ],
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "-moz-appearance"
+        ]
+      }
+    ]
   }
 }
