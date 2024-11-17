@@ -4,6 +4,17 @@
       <p>Preencha os campos abaixo para salvar seu endereço.</p>
       <form (ngSubmit)="submitForm()">
         <div class="form-group">
+            <label for="zipCode">CEP:</label>
+            <input
+              id="zipCode"
+              type="text"
+              [(ngModel)]="address.zipCode"
+              name="zipCode"
+              placeholder="Ex.: 12345-678"
+              required
+            />
+          </div>
+        <div class="form-group">
           <label for="street">Rua:</label>
           <input
             id="street"
@@ -75,17 +86,7 @@
             </option>
           </select>
         </div>
-        <div class="form-group">
-          <label for="zipCode">CEP:</label>
-          <input
-            id="zipCode"
-            type="text"
-            [(ngModel)]="address.zipCode"
-            name="zipCode"
-            placeholder="Ex.: 12345-678"
-            required
-          />
-        </div>
+        
         <button type="submit" class="btn">Salvar Endereço</button>
       </form>
     </div>
