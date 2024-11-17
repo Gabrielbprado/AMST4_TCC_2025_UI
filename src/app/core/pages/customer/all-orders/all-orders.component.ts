@@ -28,9 +28,18 @@ export class AllOrdersComponent implements OnInit{
     loadOrders() {
       // Aqui você deve carregar os pedidos de algum serviço ou API
       this.orders = [
-        { productId: 1, status: 'PENDING', shippingAddress: 'Rua dos Bobos, 0' },
-        { productId: 2, status: 'COMPLETED', shippingAddress: 'Avenida Paulista, 1000' },
-        { productId: 3, status: 'CANCELLED', shippingAddress: 'Rua Fictícia, 123' }
+        {
+          productId: 1, status: 'PENDING', shippingAddress: 'Rua dos Bobos, 0',
+          addressId: 0
+        },
+        {
+          productId: 2, status: 'COMPLETED', shippingAddress: 'Avenida Paulista, 1000',
+          addressId: 0
+        },
+        {
+          productId: 3, status: 'CANCELLED', shippingAddress: 'Rua Fictícia, 123',
+          addressId: 0
+        }
       ];
       this.loading = false;
     }

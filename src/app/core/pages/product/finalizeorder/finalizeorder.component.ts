@@ -6,6 +6,7 @@ import { ProductService } from '../../../service/Product/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrderService } from '../../../service/order.service';
 import { Order } from '../../../Model/Order';
+import { CardInfo } from '../../../Model/CardInfo';
 
 @Component({
   selector: 'app-finalizeorder',
@@ -15,16 +16,15 @@ import { Order } from '../../../Model/Order';
   styleUrl: './finalizeorder.component.css'
 })
 export class FinalizeorderComponent {
+
   selectedPaymentMethod: string | null = null;
-  savedCards = [
-    { id: 1, maskedNumber: '**** **** **** 1234', name: 'João Silva' },
-    { id: 2, maskedNumber: '**** **** **** 5678', name: 'Maria Oliveira' },
-  ];
+  savedCards: CardInfo[] = [];
 
   order: Order = {
     productId: 0,
     status: '',
     shippingAddress: '',
+    addressId: 0
   };
 
   product: Product = {
@@ -43,7 +43,7 @@ export class FinalizeorderComponent {
     private productService: ProductService,
     private activatedRouter: ActivatedRoute,
     private orderService: OrderService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -65,7 +65,8 @@ export class FinalizeorderComponent {
   }
 
   buyNow() {
-    this.orderService.DoOrder(this.order).subscribe(
+    if(this.selectedPaymentMethod === 'pix') {
+    this.orderService.DoPixOrder(this.order).subscribe(
       (response) => {
         this.router.navigate(['pix-payment', response.transactionId]);
       },
@@ -73,10 +74,37 @@ export class FinalizeorderComponent {
         console.error('Erro ao finalizar pedido:', error);
       }
     );
+  }else if(this.selectedPaymentMethod === 'boleto'){
+    console.log('Boleto');
+    this.orderService.DoBoletoOrder(this.order).subscribe(
+      (response) => {
+        const boletoUrl = response.ticketUrl;
+        console.log('Boleto URL:', boletoUrl);
+        console.log('Resposta:', response);
+        window.location.href = boletoUrl;
+      },
+      (error) => {
+        console.error('Erro ao finalizar pedido:', error);
+      }
+    );
+  }
   }
 
   selectPaymentMethod(method: string) {
     this.selectedPaymentMethod = method;
+  }
+
+  getCards() 
+  {
+    this.orderService.GetPaymentMethod().subscribe(
+      (response) => {
+        console.log('Cartões Salvos:', response);
+        this.savedCards = response;
+      },
+      (error) => {
+        console.error('Erro ao carregar cartões:', error);
+      }
+    );
   }
 
   selectSavedCard(card: any) {

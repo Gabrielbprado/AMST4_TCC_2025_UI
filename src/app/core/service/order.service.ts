@@ -4,14 +4,13 @@ import { CreatePixResponse } from '../Model/CreatePixResponse';
 import { Observable } from 'rxjs';
 import { Order } from '../Model/Order';
 import { environment } from '../../environment';
+import { CardInfo } from '../Model/CardInfo';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-  getOrders() {
-    throw new Error('Method not implemented.');
-  }
+
  
 
   constructor(private httpClient: HttpClient) { }
@@ -20,7 +19,7 @@ export class OrderService {
   private apiUrl = 'https://api.mercadopago.com/v1/payments';
 
      
-  DoOrder(order: Order): Observable<CreatePixResponse> {
+  DoPixOrder(order: Order): Observable<CreatePixResponse> {
     console.log('Fazendo pedido:', order);
     const token = localStorage.getItem('token');
 
@@ -28,14 +27,14 @@ export class OrderService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-
-    return this.httpClient.post<CreatePixResponse>(this.URL, order, { headers }); 
+    return this.httpClient.post<CreatePixResponse>(`${this.URL}/Order/pix-payment`, order, { headers }); 
   }
 
   getPaymentStatus(paymentId: number): Observable<{ status: string }> {
-    const url = `${this.apiUrl}/${paymentId}`;
+    const url = `${this.URL}/Order/${paymentId}`;
 
-    const token = 'APP_USR-1464374085804434-110516-aed7e64e8aadc3b86b76762f783993bf-1108019351'
+    const token = localStorage.getItem('token');
+
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
@@ -47,7 +46,8 @@ export class OrderService {
 
   GetPaymentInfo(id: number) 
   {
-    const url = `${this.URL}/${id}`;
+    console.log('ID do pedido:', id);
+    const url = `${this.URL}/Order/${id}`;
     const token = localStorage.getItem('token');
 
 
@@ -58,5 +58,22 @@ export class OrderService {
     return this.httpClient.get<CreatePixResponse>(url, { headers }); 
   }
 
+  DoBoletoOrder(order: Order): Observable<CreatePixResponse> {
+    console.log('Fazendo pedido:', order);
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.httpClient.post<CreatePixResponse>(`${this.URL}/Order/billet-payment`, order, { headers }); 
+  }
 
+  GetPaymentMethod(): Observable<CardInfo[]>{
+  {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.httpClient.get<CardInfo[]>(`${this.URL}/Order/my-payments-method`, { headers }); 
+  }
+}
 }

@@ -62,7 +62,6 @@ export class ProductEditComponent implements OnInit {
           price: product.price,
           stockQuantity: product.stockQuantity,
           categoryId: product.categoryId,
-          imageUrl: product.imageUrl
         });
       },
       error: (err: any) => {

@@ -28,6 +28,7 @@ export class ProductDetailsComponent implements OnInit {
     productId: 1,
     status: 'PENDING',
     shippingAddress: 'Rua dos Bobos, 0',
+    addressId: 0
   };
   responseCreatePix: CreatePixResponse = {
     transactionId: 1,

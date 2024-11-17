@@ -38,6 +38,7 @@ export class PixPaymentComponent implements OnInit, OnDestroy {
       console.log('ID do produto:', this.id);
       this.service.GetPaymentInfo(this.id).subscribe(
         (response) => {
+          console.log("response");
           console.log(response);
           this.pixInfo = response;
         },
@@ -45,16 +46,16 @@ export class PixPaymentComponent implements OnInit, OnDestroy {
           console.error(error);
         }
       );
-      this.verifyPaymentStatus();  // Verificar o status na inicialização
+      this.verifyPaymentStatus(); 
       this.paymentStatusInterval = setInterval(() => {
-        this.verifyPaymentStatus();  // Chamar a função a cada 5 segundos
+        this.verifyPaymentStatus();  
       }, 5000);
     }
   }
 
   ngOnDestroy(): void {
     if (this.paymentStatusInterval) {
-      clearInterval(this.paymentStatusInterval);  // Limpar o intervalo ao destruir o componente
+      clearInterval(this.paymentStatusInterval); 
     }
   }
 
@@ -72,10 +73,9 @@ export class PixPaymentComponent implements OnInit, OnDestroy {
         console.log(response.status);
         this.pixInfo.status = response.status;
 
-        // Quando o pagamento for aprovado, faça a animação de sucesso
         if (this.pixInfo.status === 'approved') {
-          this.showPaymentSuccess(); // Mostrar o modal
-          this.navigateToSuccessPage(); // Redirecionar após um pequeno delay
+          this.showPaymentSuccess(); 
+          this.navigateToSuccessPage(); 
         }
       },
       (error) => {
@@ -84,14 +84,12 @@ export class PixPaymentComponent implements OnInit, OnDestroy {
   }
 
   showPaymentSuccess() {
-    // Ativa a animação de sucesso
     console.log('Pagamento aprovado!');
   }
 
   navigateToSuccessPage() {
-    // Adiciona um pequeno delay antes de redirecionar para garantir que a animação seja visível
     setTimeout(() => {
       this.router.navigate(['/home']); 
-    }, 4000); // Tempo para a animação aparecer antes de redirecionar
+    }, 4000); 
   }
 }

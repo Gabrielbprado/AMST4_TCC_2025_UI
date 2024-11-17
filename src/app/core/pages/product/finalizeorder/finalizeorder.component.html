@@ -37,6 +37,7 @@
               id="credit-card"
               name="paymentMethod"
               (change)="selectPaymentMethod('credit-card')"
+              (click)="getCards()"
             />
             <label for="credit-card">Cartão de Crédito</label>
           </li>
@@ -66,7 +67,7 @@
         <ul>
           <li *ngFor="let card of savedCards">
             <div class="card-item">
-              <span>{{ card.maskedNumber }}</span>
+              <span>{{ card.lastFourDigits }}</span>
               <button (click)="selectSavedCard(card)" class="btn small">Selecionar</button>
             </div>
           </li>
@@ -74,17 +75,10 @@
         <hr />
       </div>
   
-      <div
-        [ngClass]="{ 'additional-info': true, 'active': selectedPaymentMethod === 'pix' || selectedPaymentMethod === 'boleto' }"
-      >
-        <label for="cpf">CPF:</label>
-        <input type="text" id="cpf" placeholder="Digite seu CPF" />
-      </div>
-  
       <button class="btn" (click)="buyNow()">Finalizar Pedido</button>
     </div>
     <div class="product-image">
-      <img [src]="product.images[0]" alt="Produto" />
+      <img [src]="product.images[0].imageUrl" alt="Produto" />
     </div>
   </div>
   
