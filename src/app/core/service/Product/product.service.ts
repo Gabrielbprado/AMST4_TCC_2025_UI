@@ -10,6 +10,12 @@ import { environment } from '../../../environment';
   providedIn: 'root',
 })
 export class ProductService {
+  getProductById(id: number) {
+    throw new Error('Method not implemented.');
+  }
+  updateProduct(productId: number, formData: FormData) {
+    throw new Error('Method not implemented.');
+  }
   constructor(private http: HttpClient) {}
 
   private url = environment.apiBaseUrl;
@@ -76,5 +82,9 @@ export class ProductService {
   FilterByCategory(categoryId: number): Observable<product[]> {
     const url = `${this.url}/Product/filter-category/${categoryId}`;
     return this.http.get<product[]>(url);
+  }
+  
+  update(id: number, formData: FormData): Observable<Product> {
+    return this.http.put<Product>(`${this.url}/${id}`, formData);
   }
 }

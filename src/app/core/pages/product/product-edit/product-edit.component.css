@@ -1,76 +1,113 @@
-.order-registration-container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+.product-edit-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: 'Arial', sans-serif;
 }
 
-.order-registration-container h2 {
+.product-edit-container h2 {
     text-align: center;
-    font-size: 24px;
+    font-size: 28px;
     color: #333;
     margin-bottom: 20px;
 }
 
-.order-form label {
-    display: block;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 8px;
+.product-form .form-group,
+.product-form .form-group-inline {
+    margin-bottom: 20px;
 }
 
-.order-form input[type="text"],
-.order-form input[type="number"],
-.order-form select {
+.product-form label {
+    display: block;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.product-form input,
+.product-form select,
+.product-form textarea {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
+    padding: 12px;
+    border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.product-form input:focus,
+.product-form select:focus,
+.product-form textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.form-group-inline {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group-inline > div {
+    flex: 1;
 }
 
 .description-field {
     display: flex;
-    align-items: flex-start;
     gap: 10px;
-    position: relative;
-    margin-bottom: 15px;
+    align-items: center;
 }
 
-textarea {
-    flex: 1;
+.auto-description {
+    background-color: #3600fa;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
     padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    resize: vertical;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.order-form select {
-    appearance: none;
+.auto-description i {
+    font-size: 16px;
+}
+
+.auto-description:hover {
+    background-color: #040081;
 }
 
 .image-info {
-    font-size: 14px;
     color: #777;
-    margin-top: 10px;
+    font-size: 14px;
+    margin-top: 5px;
 }
 
 .submit-btn {
-    background-color: #4CAF50;
+    width: 100%;
+    padding: 15px;
+    background-color: #3600fa;
     color: #fff;
-    padding: 12px;
     border: none;
     border-radius: 5px;
+    font-size: 18px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-    width: 100%;
+    transition: background-color 0.3s;
 }
 
 .submit-btn:hover {
-    background-color: #45a049;
+    background-color: #040081;
 }
+
+/* Mesma estrutura anterior, mas com responsividade */
+@media (max-width: 600px) {
+    .form-group-inline {
+      flex-direction: column;
+    }
+    .form-group-inline > div {
+      flex: unset;
+    }
+  }
+  
