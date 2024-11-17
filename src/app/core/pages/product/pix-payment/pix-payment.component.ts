@@ -26,6 +26,7 @@ export class PixPaymentComponent implements OnInit, OnDestroy {
 
   id: number = 0;
   paymentStatusInterval: any;
+  changeStatusOrder: any;
 
   constructor(private route: ActivatedRoute, private service: OrderService, private router: Router) {}
 
@@ -72,8 +73,24 @@ export class PixPaymentComponent implements OnInit, OnDestroy {
         console.log("response.status");
         console.log(response.status);
         this.pixInfo.status = response.status;
+        this.changeStatusOrder = 
+        {
+          transactionId: this.pixInfo.transactionId,
+          status: this.pixInfo.status
+        }
+        console.log("this.changeStatusOrder");
+        console.log(this.changeStatusOrder);
 
         if (this.pixInfo.status === 'approved') {
+          this.service.UpdatePaymentStatus(this.changeStatusOrder).subscribe(
+            (response) => {
+              console.log("response");
+              console.log(response);
+            },
+            (error) => {
+              console.error(error);
+            }
+          );
           this.showPaymentSuccess(); 
           this.navigateToSuccessPage(); 
         }
@@ -89,7 +106,7 @@ export class PixPaymentComponent implements OnInit, OnDestroy {
 
   navigateToSuccessPage() {
     setTimeout(() => {
-      this.router.navigate(['/home']); 
+      this.router.navigate(['/all-orders']); 
     }, 4000); 
   }
 }

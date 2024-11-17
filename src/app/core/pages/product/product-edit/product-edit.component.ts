@@ -1,136 +1,127 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ProductService } from '../../../service/Product/product.service'; 
-import { ActivatedRoute, Router } from '@angular/router';
-import { Product } from '../../../Model/Product';
+import { ActivatedRoute } from '@angular/router';
+import { ProductService } from '../../../service/Product/product.service';
 import { GptService } from '../../../service/gpt.service';
+import { Product } from '../../../Model/Product';
 import { CommonModule } from '@angular/common';
-
 
 @Component({
   selector: 'app-product-edit',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './product-edit.component.html',
-  styleUrl: './product-edit.component.css'
+  styleUrls: ['./product-edit.component.css'],
 })
 export class ProductEditComponent implements OnInit {
-
+  isActive = false;
   productForm: FormGroup;
-  product: Product | undefined;
-  isActive: boolean = false;
-  gptService: any;
+  productId: number | null = null;
+  imageFiles: File[] = []; 
+  imagePreviews: string[] = []; 
 
   constructor(
     private fb: FormBuilder,
-    private productService: ProductService,
     private route: ActivatedRoute,
-    private router: Router
+    private productService: ProductService,
+    private gptService: GptService
   ) {
-    // Criando o FormGroup para edição
     this.productForm = this.fb.group({
       name: ['', Validators.required],
       description: [''],
       price: [null, [Validators.required, Validators.min(0)]],
       stockQuantity: [null, [Validators.required, Validators.min(0)]],
       categoryId: ['', Validators.required],
-      imageUrl: [null]
     });
   }
 
   ngOnInit(): void {
-    const productId = +this.route.snapshot.paramMap.get('id')!; // Recuperando o id do produto pela URL
-
-    if (isNaN(productId)) {
-      console.error('ID inválido do produto.');
-      return;
+    this.productId = Number(this.route.snapshot.paramMap.get('id'));
+    if (this.productId) {
+      this.loadProductData();
     }
-
-    // Carregando o produto para edição
-    this.loadProduct(productId);
   }
 
-  // Método para carregar o produto pelo ID
-  loadProduct(id: number): void {
-    this.productService.GetById(id).subscribe({
+  // Carrega os dados do produto
+  private loadProductData(): void {
+    this.productService.GetById(this.productId!).subscribe({
       next: (product: Product) => {
-        this.product = product;
-        // Preenche o formulário com os dados do produto
         this.productForm.patchValue({
           name: product.name,
           description: product.description,
           price: product.price,
           stockQuantity: product.stockQuantity,
           categoryId: product.categoryId,
-          imageUrl: product.images
         });
+
+        // Pré-visualiza as imagens existentes
+        this.imagePreviews = product.images?.map(img => img.imageUrl) || [];
       },
-      error: (err: any) => {
-        console.error('Erro ao carregar o produto', err);
-      }
+      error: (err) => console.error('Erro ao carregar o produto:', err),
     });
   }
 
   // Método para editar o produto
-  editProduct(): void {
-    if (this.productForm.valid && this.product) {
+  saveChanges(): void {
+    if (this.productForm.valid) {
       const formData = new FormData();
-      const price = this.productForm.get('price')?.value;
-      const priceWithDot = price ? price.toString().replace(',', '.') : null;
-      this.productForm.patchValue({ price: priceWithDot });
-
-      // Preenche o formData com os dados do formulário
-      Object.entries(this.productForm.value).forEach(([key, value]) => {
-        if (key === 'imageUrl' && value) {
-          formData.append('image', value as File); // Imagem
-        } else {
-          formData.append(key, value as string); // Outros campos
+  
+      // Adiciona os dados do produto (sem incluir 'images' aqui)
+      Object.keys(this.productForm.value).forEach((key) => {
+        if (key !== 'images') {
+          formData.append(key, this.productForm.get(key)?.value);
         }
       });
-
-      // Envia a requisição para editar o produto
-      this.productService.update(this.product.id, formData).subscribe({
-        next: (response: any) => {
-          console.log('Produto atualizado:', response);
-          this.router.navigate(['/products']); // Redireciona para a lista de produtos
-        },
-        error: (error: any) => {
-          console.error('Erro ao editar produto:', error);
-        }
+  
+      // Envia as novas imagens
+      this.imageFiles.forEach((file) => {
+        formData.append('images', file, file.name);  // 'images' é o nome esperado pela API
+      });
+  
+      // Se necessário, você pode enviar um campo adicional para o backend que indique que este é um produto já existente
+      formData.append('productId', String(this.productId)); // Certifique-se de que o productId está correto
+  
+      // Exibe o FormData no console para depuração (opcional)
+      console.log('Formulário válido! Enviando dados:', formData);
+  
+      // Chama o serviço para atualizar o produto
+      this.productService.UpdateProduct(formData).subscribe({
+        next: (response) => console.log('Produto atualizado com sucesso:', response),
+        error: (error) => console.error('Erro ao atualizar o produto:', error),
       });
     } else {
       console.log('Formulário inválido!');
     }
   }
+  
 
-  // Método para capturar a imagem enviada
+  // Atualiza a descrição automaticamente
+  toggleAutoDescription(): void {
+    this.isActive = !this.isActive;
+    if (this.isActive) {
+      const productName: string = this.productForm.get('name')?.value;
+      if (productName) {
+        this.gptService.GenerateDescription(productName).subscribe((response) => {
+          this.productForm.patchValue({ description: response.description });
+        });
+      } else {
+        this.isActive = false;
+      }
+    }
+  }
+
+  // Captura as imagens carregadas
   onFileChange(event: any): void {
     const file = event.target.files[0];
     if (file) {
-      this.productForm.patchValue({ imageUrl: file });
+      this.imageFiles.push(file);
+      this.imagePreviews.push(URL.createObjectURL(file));
     }
   }
-    
-  toggleAutoDescription(): void {
-    this.isActive = !this.isActive;
-  
-    if (this.isActive) {
-      const productName: string = this.productForm.get('name')?.value;
-      console.log('Nome do produto:', productName);
-  
-      if (productName) {
-        this.gptService.GenerateDescription(productName).subscribe({
-          next: (response: { description: any; }) => {
-            console.log('Descrição gerada:', response.description);
-            this.productForm.patchValue({ description: response.description });
-          },
-        });
-      } else {
-        console.error('O nome do produto é necessário para gerar a descrição.');
-        this.isActive = false; // Desativa o toggle caso o nome esteja vazio
-      }
-    } else {
-      this.productForm.patchValue({ description: '' });
-    }
+
+  // Remove a imagem da pré-visualização
+  removeImage(index: number): void {
+    this.imagePreviews.splice(index, 1);
+    this.imageFiles.splice(index, 1);
   }
 }

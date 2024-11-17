@@ -1,105 +1,58 @@
 <div class="product-edit-container">
-    <h2>Editar Produto</h2>
-    <form [formGroup]="productForm" (ngSubmit)="editProduct()" class="product-form">
-      <div class="form-group">
-        <label for="product-name">
-          <i class="fas fa-tag"></i> Nome do Produto
-        </label>
-        <input
-          formControlName="name"
-          type="text"
-          id="product-name"
-          placeholder="Ex: Smartphone Samsung Galaxy"
-          required
-        />
-        <small *ngIf="productForm.get('name')?.touched && productForm.get('name')?.hasError('required')">
-          Nome é obrigatório.
-        </small>
+  <h2>Editar Produto</h2>
+  <form [formGroup]="productForm" (ngSubmit)="saveChanges()" class="product-form">
+    <div class="form-group">
+      <label for="product-name">Nome do Produto</label>
+      <input formControlName="name" type="text" id="product-name" placeholder="Ex: Smartphone Galaxy" required />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Descrição</label>
+      <textarea formControlName="description" id="description" placeholder="Detalhes do produto"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Preço</label>
+      <input formControlName="price" type="number" id="price" />
+    </div>
+
+    <div class="form-group">
+      <label for="stockQuantity">Quantidade em Estoque</label>
+      <input formControlName="stockQuantity" type="number" id="stockQuantity" />
+    </div>
+
+    <div class="form-group">
+      <label for="categoryId">Categoria</label>
+      <select formControlName="categoryId" id="categoryId">
+        <option value="" disabled>Selecione uma categoria</option>
+        <option value="1">Eletrônicos</option>
+        <option value="2">Roupas</option>
+        <option value="3">Casa</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Imagens Existentes</label>
+      <div class="image-preview" *ngFor="let image of imagePreviews">
+        <img [src]="image" alt="Imagem existente" />
       </div>
-  
-      <div class="form-group">
-        <label for="description">
-          <i class="fas fa-align-left"></i> Descrição
-        </label>
-        <div class="description-field">
-          <textarea
-            formControlName="description"
-            id="description"
-            placeholder="Detalhes do produto, funcionalidades e benefícios"
-          ></textarea>
-          <button
-            type="button"
-            title="Gerar descrição automática"
-            (click)="toggleAutoDescription()"
-            class="auto-description"
-            [class.active]="isActive"
-          >
-            <i class="fas fa-pencil-alt"></i>
-          </button>
-        </div>
+    </div>
+
+    <div class="form-group">
+      <label>Adicionar Novas Imagens</label>
+      <input type="file" (change)="onFileChange($event)" accept="image/*" />
+    </div>
+
+    <div class="form-group">
+      <label>Pré-visualizações</label>
+      <div class="image-preview" *ngFor="let preview of imagePreviews; let i = index">
+        <img [src]="preview" alt="Nova imagem" />
+        <button type="button" (click)="removeImage(i)">Remover</button>
       </div>
-  
-      <div class="form-group-inline">
-        <div>
-          <label for="price">
-            <i class="fas fa-dollar-sign"></i> Preço (R$)
-          </label>
-          <input
-            formControlName="price"
-            type="number"
-            id="price"
-            placeholder="Ex: 199.90"
-          />
-          <small *ngIf="productForm.get('price')?.touched && productForm.get('price')?.hasError('required')">
-            Preço é obrigatório.
-          </small>
-        </div>
-        <div>
-          <label for="stock">
-            <i class="fas fa-box"></i> Estoque
-          </label>
-          <input
-            formControlName="stockQuantity"
-            type="number"
-            id="stock"
-            placeholder="Qtd"
-          />
-          <small *ngIf="productForm.get('stockQuantity')?.touched && productForm.get('stockQuantity')?.hasError('required')">
-            Estoque é obrigatório.
-          </small>
-        </div>
-      </div>
-  
-      <div class="form-group">
-        <label for="category">
-          <i class="fas fa-folder"></i> Categoria
-        </label>
-        <select formControlName="categoryId" id="category" required>
-          <option value="" disabled selected>Selecione uma categoria</option>
-          <option value="1">Eletrônicos</option>
-          <option value="2">Roupas</option>
-          <option value="3">Casa</option>
-          <option value="4">Livros</option>
-          <option value="0">Outros</option>
-        </select>
-      </div>
-  
-      <div class="form-group">
-        <label for="images">
-          <i class="fas fa-camera"></i> Imagens do Produto (até 3)
-        </label>
-        <input
-          type="file"
-          id="images"
-          accept="image/*"
-          (change)="onFileChange($event)"
-        />
-        <small class="image-info">Máximo de 3 imagens.</small>
-      </div>
-  
-      <div class="form-group">
-        <button class="submit-btn" type="submit">Salvar alterações</button>
-      </div>
-    </form>
-  </div>
-  
+    </div>
+
+    <div class="form-group">
+      <button type="submit" [disabled]="productForm.invalid">Salvar Alterações</button>
+    </div>
+  </form>
+</div>

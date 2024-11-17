@@ -111,3 +111,12 @@
     }
   }
   
+  .image-preview img {
+    max-width: 150px; /* Largura máxima */
+    max-height: 150px; /* Altura máxima */
+    object-fit: cover; /* Ajusta a imagem para caber no contêiner sem distorção */
+    border-radius: 5px; /* Cantos arredondados (opcional) */
+    margin: 5px; /* Espaçamento entre as imagens */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra para visualização melhor */
+  }
+  

@@ -70,7 +70,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" href="#">Meus Pedidos</a>
+                                <a class="dropdown-item" (click)="navigateToMyOrders()">Meus Pedidos</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="#">Acompanhar Pedido</a>
@@ -123,6 +123,12 @@
                                 <button (click)="profileUser()" class="dropdown-item" href="#">
                                     <i class="fas fa-user"></i>
                                     Meu Perfil
+                                </button>
+                            </li>
+                            <li>
+                                <button (click)="registerProduct()" class="dropdown-item" href="#">
+                                    <i class="fas fa-user"></i>
+                                    Cadastrar Produto
                                 </button>
                             </li>
                             <li>

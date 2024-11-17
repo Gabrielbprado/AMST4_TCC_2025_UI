@@ -30,7 +30,7 @@ export const routes: Routes = [
   { path: 'finalize-order/:id', component: FinalizeorderComponent },
   { path: 'order-completed', component: OrderCompletedComponent },
   { path: 'product-registration', component: ProductRegistrationComponent },
-  { path: 'product-edit', component: ProductEditComponent },
+  { path: 'product-edit/:id', component: ProductEditComponent },
   { path: 'product-delete', component: DeleteProductComponent },
   { path: 'pix-payment/:id', component: PixPaymentComponent },
   { path: 'product-details/:id', component: ProductDetailsComponent },

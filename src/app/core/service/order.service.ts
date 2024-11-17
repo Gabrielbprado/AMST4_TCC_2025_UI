@@ -5,12 +5,13 @@ import { Observable } from 'rxjs';
 import { Order } from '../Model/Order';
 import { environment } from '../../environment';
 import { CardInfo } from '../Model/CardInfo';
+import { ResponseOrder } from '../Model/ResponseOrder';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-
+ 
  
 
   constructor(private httpClient: HttpClient) { }
@@ -66,7 +67,22 @@ export class OrderService {
     });
     return this.httpClient.post<CreatePixResponse>(`${this.URL}/Order/billet-payment`, order, { headers }); 
   }
+  
+  GetOrders(): Observable<ResponseOrder[]> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.httpClient.get<ResponseOrder[]>(`${this.URL}/Order/my-orders`, { headers });
+  }
 
+  UpdatePaymentStatus(changeStatusOrder: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.httpClient.put(`${this.URL}/Order`, changeStatusOrder , { headers });
+  }
   GetPaymentMethod(): Observable<CardInfo[]>{
   {
     const token = localStorage.getItem('token');
@@ -75,5 +91,8 @@ export class OrderService {
     });
     return this.httpClient.get<CardInfo[]>(`${this.URL}/Order/my-payments-method`, { headers }); 
   }
+
+  
+
 }
 }

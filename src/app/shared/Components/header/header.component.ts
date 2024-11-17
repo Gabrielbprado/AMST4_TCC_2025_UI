@@ -13,6 +13,12 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+registerProduct() {
+  this.router.navigate(['product-registration']);
+}
+navigateToMyOrders() {
+  this.router.navigate(['all-orders']);
+}
   categories: Category[] = [];
 
   constructor(

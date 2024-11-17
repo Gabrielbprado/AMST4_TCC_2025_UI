@@ -1,12 +1,10 @@
 <div class="orders-container">
     <h1>Meus Pedidos</h1>
     
-    <!-- Verifica se não há pedidos -->
     <div *ngIf="orders.length === 0" class="no-orders">
       <p>Você não tem nenhum pedido recente.</p>
     </div>
   
-    <!-- Exibe cada pedido -->
     <div *ngFor="let order of orders; let i = index" class="order-card">
       <div class="order-summary">
         <span class="order-id">Pedido #{{ i + 1 }}</span>
