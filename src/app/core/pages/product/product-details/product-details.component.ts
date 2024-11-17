@@ -90,4 +90,21 @@ export class ProductDetailsComponent implements OnInit {
     console.log('Finalizando Pedido...');
     this.router.navigate(['finalize-order', this.id]);
   }
+  swapImages(event: Event): void {
+    const clickedThumbnail = event.target as HTMLImageElement;
+    const mainImage = document.getElementById('main-image') as HTMLImageElement;
+  
+    if (clickedThumbnail && mainImage) {
+      // Troca os src entre a miniatura clicada e a imagem principal
+      const tempSrc = mainImage.src;
+      mainImage.src = clickedThumbnail.src;
+      clickedThumbnail.src = tempSrc;
+  
+      // Atualiza a classe 'active' na miniatura clicada
+      const thumbnails = document.querySelectorAll('.thumbnail-images img');
+      thumbnails.forEach((img) => img.classList.remove('active'));
+      clickedThumbnail.classList.add('active');
+    }
+  }
+  
 }
