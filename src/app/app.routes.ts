@@ -17,6 +17,7 @@ import { RegisterAddressComponent } from './core/pages/customer/register-address
 import { AddCardComponent } from './core/pages/customer/add-card/add-card.component';
 import { ProductsSellerComponent } from './core/pages/Seller/products-seller/products-seller.component';
 import { PaymentCardFormComponent } from './core/pages/product/payment-card-form/payment-card-form.component';
+import { AllOrdersComponent } from './core/pages/customer/all-orders/all-orders.component';
 
 
 
@@ -38,6 +39,7 @@ export const routes: Routes = [
   { path: 'register-card', component: AddCardComponent },
   { path: 'product-seller', component: ProductsSellerComponent },
   { path: 'payment-card-form', component: PaymentCardFormComponent },
+  { path: 'all-orders', component: AllOrdersComponent },
   {
     path: '',
     children: [

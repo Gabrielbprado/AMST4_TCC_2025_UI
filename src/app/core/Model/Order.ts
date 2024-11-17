@@ -1,6 +1,6 @@
 export interface Order
 {
-    productId: number;
+  productId: number;
   status: string;
   shippingAddress: string;
 }

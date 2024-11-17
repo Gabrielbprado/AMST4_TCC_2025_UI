@@ -9,6 +9,9 @@ import { environment } from '../../environment';
   providedIn: 'root'
 })
 export class OrderService {
+  getOrders() {
+    throw new Error('Method not implemented.');
+  }
  
 
   constructor(private httpClient: HttpClient) { }
