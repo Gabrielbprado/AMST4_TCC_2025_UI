@@ -76,11 +76,9 @@
       </label>
       <select formControlName="categoryId" id="category" required>
         <option value="" disabled selected>Selecione uma categoria</option>
-        <option value="1">Eletrônicos</option>
-        <option value="2">Roupas</option>
-        <option value="3">Casa</option>
-        <option value="4">Livros</option>
-        <option value="0">Outros</option>
+        <ng-container *ngFor="let category of categories">
+          <option [value]="category.id">{{ category.description }}</option>
+        </ng-container>
       </select>
     </div>
 

@@ -15,7 +15,8 @@ export class ProductCardComponent {
     name: 'Andrey',
     price: 1,
     imageUrl: 'imagem.com',
-    id: 0
+    id: 0,
+    categoryId: ''
   };
 
   constructor(private router: Router) { }

@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProductService } from '../../../service/Product/product.service';
 import { GptService } from '../../../service/gpt.service';
 import { CommonModule } from '@angular/common';
+import { Category } from '../../../Model/Category';
+import { CategoryService } from '../../../service/category.service';
 
 @Component({
   selector: 'app-product-registration',
@@ -11,13 +13,14 @@ import { CommonModule } from '@angular/common';
   templateUrl: './product-registration.component.html',
   styleUrls: ['./product-registration.component.css'],
 })
-export class ProductRegistrationComponent {
+export class ProductRegistrationComponent implements OnInit {
   isActive = false;
   orderForm: FormGroup;
   imageFiles: File[] = []; 
   imagePreviews: string[] = []; 
+  categories: Category[] = [];
 
-  constructor(private fb: FormBuilder, private service: ProductService, private gptService: GptService) {
+  constructor(private fb: FormBuilder, private service: ProductService, private gptService: GptService,private categoryService: CategoryService) {
     this.orderForm = this.fb.group({
       name: ['', Validators.required],
       description: [''],
@@ -25,6 +28,17 @@ export class ProductRegistrationComponent {
       stockQuantity: [null, [Validators.required, Validators.min(0)]],
       categoryId: ['', Validators.required],
     });
+  }
+  ngOnInit(): void {
+    this.categoryService.GetAll().subscribe({
+      next: (categories) => {
+        this.categories = categories;
+        console.log('Categorias carregadas:', categories);
+      },
+      error: (error) => {
+        console.error('Erro ao carregar categorias:', error);
+        }
+        });
   }
 
   toggleAutoDescription(): void {
